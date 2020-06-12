@@ -1,0 +1,658 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		458716D3B17C15DD4CE8A827 /* Pods_DigitalMiner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C439E86B61CA4B2606C3954 /* Pods_DigitalMiner.framework */; };
+		B40EA2D02113567100D6911F /* XMRJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EA2CF2113567100D6911F /* XMRJob.swift */; };
+		B45DACA52113F6F6004988D9 /* XMRStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACA42113F6F6004988D9 /* XMRStream.swift */; };
+		B45DACA82114865B004988D9 /* XMRUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACA72114865A004988D9 /* XMRUtils.swift */; };
+		B45DACAC21152226004988D9 /* XMRBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACAB21152226004988D9 /* XMRBackend.swift */; };
+		B45DACAE2115224B004988D9 /* XMRCPUBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACAD2115224B004988D9 /* XMRCPUBackend.swift */; };
+		B45DACDC2115245B004988D9 /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACC92115245B004988D9 /* keccak.c */; };
+		B45DACDD2115245B004988D9 /* hash-extra-groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACCB2115245B004988D9 /* hash-extra-groestl.c */; };
+		B45DACDE2115245B004988D9 /* hash-extra-blake.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACCD2115245B004988D9 /* hash-extra-blake.c */; };
+		B45DACDF2115245B004988D9 /* blake256.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACCE2115245B004988D9 /* blake256.c */; };
+		B45DACE02115245B004988D9 /* hash-extra-jh.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD22115245B004988D9 /* hash-extra-jh.c */; };
+		B45DACE12115245B004988D9 /* jh.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD32115245B004988D9 /* jh.c */; };
+		B45DACE22115245B004988D9 /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD52115245B004988D9 /* groestl.c */; };
+		B45DACE32115245B004988D9 /* hash-extra-skein.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD72115245B004988D9 /* hash-extra-skein.c */; };
+		B45DACE42115245B004988D9 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD82115245B004988D9 /* skein.c */; };
+		B45DACE52115245B004988D9 /* slow-hash.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACDB2115245B004988D9 /* slow-hash.c */; };
+		B45DACE821154254004988D9 /* XMRCPUProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACE721154254004988D9 /* XMRCPUProcessor.c */; };
+		B4D3C7E921390E3D002F4E82 /* XMRTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3C7E821390E3D002F4E82 /* XMRTimer.swift */; };
+		B4EA758A2112D88F0001F42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75892112D88F0001F42C /* AppDelegate.swift */; };
+		B4EA758C2112D88F0001F42C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA758B2112D88F0001F42C /* ViewController.swift */; };
+		B4EA758F2112D88F0001F42C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4EA758D2112D88F0001F42C /* Main.storyboard */; };
+		B4EA75912112D8920001F42C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EA75902112D8920001F42C /* Assets.xcassets */; };
+		B4EA75942112D8920001F42C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4EA75922112D8920001F42C /* LaunchScreen.storyboard */; };
+		B4EA75C7211300270001F42C /* XMRMiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75C6211300260001F42C /* XMRMiner.swift */; };
+		B4EA75C9211300320001F42C /* XMRTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75C8211300320001F42C /* XMRTask.swift */; };
+		B4EA75CB211300440001F42C /* XMRWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75CA211300440001F42C /* XMRWorker.swift */; };
+		B4EA75CF211300A50001F42C /* libXMRMiner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EA75BD2112FFE70001F42C /* libXMRMiner.a */; };
+		B4EA75D1211307F60001F42C /* XMRPoolSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75D0211307F60001F42C /* XMRPoolSession.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4EA75CD211300A10001F42C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4EA757E2112D88F0001F42C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EA75BC2112FFE70001F42C;
+			remoteInfo = XMRMiner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B4EA75BB2112FFE70001F42C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		13F030E1551E5A1DB26DC1DC /* Pods-DigitalMiner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitalMiner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigitalMiner/Pods-DigitalMiner.debug.xcconfig"; sourceTree = "<group>"; };
+		2C439E86B61CA4B2606C3954 /* Pods_DigitalMiner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitalMiner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6427BFD553BD7C20D3B5DBB /* Pods-DigitalMiner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitalMiner.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigitalMiner/Pods-DigitalMiner.release.xcconfig"; sourceTree = "<group>"; };
+		B40EA2CF2113567100D6911F /* XMRJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRJob.swift; sourceTree = "<group>"; };
+		B45DACA42113F6F6004988D9 /* XMRStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRStream.swift; sourceTree = "<group>"; };
+		B45DACA72114865A004988D9 /* XMRUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRUtils.swift; sourceTree = "<group>"; };
+		B45DACAB21152226004988D9 /* XMRBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRBackend.swift; sourceTree = "<group>"; };
+		B45DACAD2115224B004988D9 /* XMRCPUBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRCPUBackend.swift; sourceTree = "<group>"; };
+		B45DACC92115245B004988D9 /* keccak.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keccak.c; sourceTree = "<group>"; };
+		B45DACCA2115245B004988D9 /* groestl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl.h; sourceTree = "<group>"; };
+		B45DACCB2115245B004988D9 /* hash-extra-groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-groestl.c"; sourceTree = "<group>"; };
+		B45DACCC2115245B004988D9 /* jh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jh.h; sourceTree = "<group>"; };
+		B45DACCD2115245B004988D9 /* hash-extra-blake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-blake.c"; sourceTree = "<group>"; };
+		B45DACCE2115245B004988D9 /* blake256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake256.c; sourceTree = "<group>"; };
+		B45DACCF2115245B004988D9 /* skein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein.h; sourceTree = "<group>"; };
+		B45DACD02115245B004988D9 /* skein_port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein_port.h; sourceTree = "<group>"; };
+		B45DACD12115245B004988D9 /* groestl_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl_tables.h; sourceTree = "<group>"; };
+		B45DACD22115245B004988D9 /* hash-extra-jh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-jh.c"; sourceTree = "<group>"; };
+		B45DACD32115245B004988D9 /* jh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jh.c; sourceTree = "<group>"; };
+		B45DACD42115245B004988D9 /* hash-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hash-ops.h"; sourceTree = "<group>"; };
+		B45DACD52115245B004988D9 /* groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = groestl.c; sourceTree = "<group>"; };
+		B45DACD62115245B004988D9 /* keccak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keccak.h; sourceTree = "<group>"; };
+		B45DACD72115245B004988D9 /* hash-extra-skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-skein.c"; sourceTree = "<group>"; };
+		B45DACD82115245B004988D9 /* skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = skein.c; sourceTree = "<group>"; };
+		B45DACD92115245B004988D9 /* blake256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blake256.h; sourceTree = "<group>"; };
+		B45DACDA2115245B004988D9 /* int-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "int-util.h"; sourceTree = "<group>"; };
+		B45DACDB2115245B004988D9 /* slow-hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "slow-hash.c"; sourceTree = "<group>"; };
+		B45DACE621154254004988D9 /* XMRCPUProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMRCPUProcessor.h; sourceTree = "<group>"; };
+		B45DACE721154254004988D9 /* XMRCPUProcessor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = XMRCPUProcessor.c; sourceTree = "<group>"; };
+		B4D3C7E821390E3D002F4E82 /* XMRTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRTimer.swift; sourceTree = "<group>"; };
+		B4EA75862112D88F0001F42C /* DigitalMiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalMiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EA75892112D88F0001F42C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B4EA758B2112D88F0001F42C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B4EA758E2112D88F0001F42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B4EA75902112D8920001F42C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B4EA75932112D8920001F42C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B4EA75952112D8920001F42C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4EA75BD2112FFE70001F42C /* libXMRMiner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMRMiner.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EA75C42112FFFF0001F42C /* XMRMiner.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = XMRMiner.modulemap; sourceTree = "<group>"; };
+		B4EA75C5211300260001F42C /* XMRMiner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMRMiner-Bridging-Header.h"; sourceTree = "<group>"; };
+		B4EA75C6211300260001F42C /* XMRMiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMRMiner.swift; sourceTree = "<group>"; };
+		B4EA75C8211300320001F42C /* XMRTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRTask.swift; sourceTree = "<group>"; };
+		B4EA75CA211300440001F42C /* XMRWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRWorker.swift; sourceTree = "<group>"; };
+		B4EA75CC2113007D0001F42C /* XMRMiner-unbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMRMiner-unbrella.h"; sourceTree = "<group>"; };
+		B4EA75D0211307F60001F42C /* XMRPoolSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRPoolSession.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4EA75832112D88F0001F42C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EA75CF211300A50001F42C /* libXMRMiner.a in Frameworks */,
+				458716D3B17C15DD4CE8A827 /* Pods_DigitalMiner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EA75BA2112FFE70001F42C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B97397FA5A522F0BE16D866 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C439E86B61CA4B2606C3954 /* Pods_DigitalMiner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C6B3D346FDB6CAC98894CCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13F030E1551E5A1DB26DC1DC /* Pods-DigitalMiner.debug.xcconfig */,
+				A6427BFD553BD7C20D3B5DBB /* Pods-DigitalMiner.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B45DACA9211521CB004988D9 /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				B45DACAA211521D7004988D9 /* CPU */,
+				B45DACAB21152226004988D9 /* XMRBackend.swift */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		B45DACAA211521D7004988D9 /* CPU */ = {
+			isa = PBXGroup;
+			children = (
+				B45DACC82115245B004988D9 /* crypto */,
+				B45DACAD2115224B004988D9 /* XMRCPUBackend.swift */,
+				B45DACE621154254004988D9 /* XMRCPUProcessor.h */,
+				B45DACE721154254004988D9 /* XMRCPUProcessor.c */,
+			);
+			path = CPU;
+			sourceTree = "<group>";
+		};
+		B45DACC82115245B004988D9 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				B45DACC92115245B004988D9 /* keccak.c */,
+				B45DACCA2115245B004988D9 /* groestl.h */,
+				B45DACCB2115245B004988D9 /* hash-extra-groestl.c */,
+				B45DACCC2115245B004988D9 /* jh.h */,
+				B45DACCD2115245B004988D9 /* hash-extra-blake.c */,
+				B45DACCE2115245B004988D9 /* blake256.c */,
+				B45DACCF2115245B004988D9 /* skein.h */,
+				B45DACD02115245B004988D9 /* skein_port.h */,
+				B45DACD12115245B004988D9 /* groestl_tables.h */,
+				B45DACD22115245B004988D9 /* hash-extra-jh.c */,
+				B45DACD32115245B004988D9 /* jh.c */,
+				B45DACD42115245B004988D9 /* hash-ops.h */,
+				B45DACD52115245B004988D9 /* groestl.c */,
+				B45DACD62115245B004988D9 /* keccak.h */,
+				B45DACD72115245B004988D9 /* hash-extra-skein.c */,
+				B45DACD82115245B004988D9 /* skein.c */,
+				B45DACD92115245B004988D9 /* blake256.h */,
+				B45DACDA2115245B004988D9 /* int-util.h */,
+				B45DACDB2115245B004988D9 /* slow-hash.c */,
+			);
+			path = crypto;
+			sourceTree = "<group>";
+		};
+		B4EA757D2112D88F0001F42C = {
+			isa = PBXGroup;
+			children = (
+				B4EA75882112D88F0001F42C /* DigitalMiner */,
+				B4EA75BE2112FFE70001F42C /* XMRMiner */,
+				B4EA75872112D88F0001F42C /* Products */,
+				9C6B3D346FDB6CAC98894CCB /* Pods */,
+				7B97397FA5A522F0BE16D866 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B4EA75872112D88F0001F42C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA75862112D88F0001F42C /* DigitalMiner.app */,
+				B4EA75BD2112FFE70001F42C /* libXMRMiner.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4EA75882112D88F0001F42C /* DigitalMiner */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA75892112D88F0001F42C /* AppDelegate.swift */,
+				B4EA758B2112D88F0001F42C /* ViewController.swift */,
+				B4EA758D2112D88F0001F42C /* Main.storyboard */,
+				B4EA75902112D8920001F42C /* Assets.xcassets */,
+				B4EA75922112D8920001F42C /* LaunchScreen.storyboard */,
+				B4EA75952112D8920001F42C /* Info.plist */,
+			);
+			path = DigitalMiner;
+			sourceTree = "<group>";
+		};
+		B4EA75BE2112FFE70001F42C /* XMRMiner */ = {
+			isa = PBXGroup;
+			children = (
+				B45DACA9211521CB004988D9 /* Backend */,
+				B4EA75C6211300260001F42C /* XMRMiner.swift */,
+				B4EA75C42112FFFF0001F42C /* XMRMiner.modulemap */,
+				B4EA75C5211300260001F42C /* XMRMiner-Bridging-Header.h */,
+				B4EA75CC2113007D0001F42C /* XMRMiner-unbrella.h */,
+				B4EA75C8211300320001F42C /* XMRTask.swift */,
+				B4EA75CA211300440001F42C /* XMRWorker.swift */,
+				B4EA75D0211307F60001F42C /* XMRPoolSession.swift */,
+				B40EA2CF2113567100D6911F /* XMRJob.swift */,
+				B45DACA42113F6F6004988D9 /* XMRStream.swift */,
+				B45DACA72114865A004988D9 /* XMRUtils.swift */,
+				B4D3C7E821390E3D002F4E82 /* XMRTimer.swift */,
+			);
+			path = XMRMiner;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4EA75852112D88F0001F42C /* DigitalMiner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4EA75982112D8920001F42C /* Build configuration list for PBXNativeTarget "DigitalMiner" */;
+			buildPhases = (
+				8C1C8CD6B72C2B5017500A3E /* [CP] Check Pods Manifest.lock */,
+				B4EA75822112D88F0001F42C /* Sources */,
+				B4EA75832112D88F0001F42C /* Frameworks */,
+				B4EA75842112D88F0001F42C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4EA75CE211300A10001F42C /* PBXTargetDependency */,
+			);
+			name = DigitalMiner;
+			productName = DigitalMiner;
+			productReference = B4EA75862112D88F0001F42C /* DigitalMiner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4EA75BC2112FFE70001F42C /* XMRMiner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4EA75C12112FFE70001F42C /* Build configuration list for PBXNativeTarget "XMRMiner" */;
+			buildPhases = (
+				B4EA75B92112FFE70001F42C /* Sources */,
+				B4EA75BA2112FFE70001F42C /* Frameworks */,
+				B4EA75BB2112FFE70001F42C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMRMiner;
+			productName = XMRMiner;
+			productReference = B4EA75BD2112FFE70001F42C /* libXMRMiner.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4EA757E2112D88F0001F42C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = debugeek;
+				TargetAttributes = {
+					B4EA75852112D88F0001F42C = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					B4EA75BC2112FFE70001F42C = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+					};
+				};
+			};
+			buildConfigurationList = B4EA75812112D88F0001F42C /* Build configuration list for PBXProject "DigitalMiner" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B4EA757D2112D88F0001F42C;
+			productRefGroup = B4EA75872112D88F0001F42C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4EA75852112D88F0001F42C /* DigitalMiner */,
+				B4EA75BC2112FFE70001F42C /* XMRMiner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4EA75842112D88F0001F42C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EA75942112D8920001F42C /* LaunchScreen.storyboard in Resources */,
+				B4EA75912112D8920001F42C /* Assets.xcassets in Resources */,
+				B4EA758F2112D88F0001F42C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8C1C8CD6B72C2B5017500A3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DigitalMiner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4EA75822112D88F0001F42C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EA758C2112D88F0001F42C /* ViewController.swift in Sources */,
+				B4EA758A2112D88F0001F42C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4EA75B92112FFE70001F42C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B45DACE12115245B004988D9 /* jh.c in Sources */,
+				B45DACDE2115245B004988D9 /* hash-extra-blake.c in Sources */,
+				B45DACA82114865B004988D9 /* XMRUtils.swift in Sources */,
+				B40EA2D02113567100D6911F /* XMRJob.swift in Sources */,
+				B45DACAC21152226004988D9 /* XMRBackend.swift in Sources */,
+				B45DACDC2115245B004988D9 /* keccak.c in Sources */,
+				B45DACE42115245B004988D9 /* skein.c in Sources */,
+				B45DACDF2115245B004988D9 /* blake256.c in Sources */,
+				B45DACA52113F6F6004988D9 /* XMRStream.swift in Sources */,
+				B45DACAE2115224B004988D9 /* XMRCPUBackend.swift in Sources */,
+				B45DACE02115245B004988D9 /* hash-extra-jh.c in Sources */,
+				B45DACE52115245B004988D9 /* slow-hash.c in Sources */,
+				B45DACE22115245B004988D9 /* groestl.c in Sources */,
+				B45DACE821154254004988D9 /* XMRCPUProcessor.c in Sources */,
+				B4EA75D1211307F60001F42C /* XMRPoolSession.swift in Sources */,
+				B4D3C7E921390E3D002F4E82 /* XMRTimer.swift in Sources */,
+				B4EA75CB211300440001F42C /* XMRWorker.swift in Sources */,
+				B45DACE32115245B004988D9 /* hash-extra-skein.c in Sources */,
+				B4EA75C9211300320001F42C /* XMRTask.swift in Sources */,
+				B45DACDD2115245B004988D9 /* hash-extra-groestl.c in Sources */,
+				B4EA75C7211300270001F42C /* XMRMiner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4EA75CE211300A10001F42C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4EA75BC2112FFE70001F42C /* XMRMiner */;
+			targetProxy = B4EA75CD211300A10001F42C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4EA758D2112D88F0001F42C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4EA758E2112D88F0001F42C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B4EA75922112D8920001F42C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4EA75932112D8920001F42C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4EA75962112D8920001F42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B4EA75972112D8920001F42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4EA75992112D8920001F42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13F030E1551E5A1DB26DC1DC /* Pods-DigitalMiner.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NH4B34Z28M;
+				INFOPLIST_FILE = DigitalMiner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.debugeek.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B4EA759A2112D8920001F42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6427BFD553BD7C20D3B5DBB /* Pods-DigitalMiner.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NH4B34Z28M;
+				INFOPLIST_FILE = DigitalMiner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.debugeek.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B4EA75C22112FFE70001F42C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = XMRMiner.modulemap;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XMRMiner/XMRMiner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B4EA75C32112FFE70001F42C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = XMRMiner.modulemap;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XMRMiner/XMRMiner-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4EA75812112D88F0001F42C /* Build configuration list for PBXProject "DigitalMiner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EA75962112D8920001F42C /* Debug */,
+				B4EA75972112D8920001F42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EA75982112D8920001F42C /* Build configuration list for PBXNativeTarget "DigitalMiner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EA75992112D8920001F42C /* Debug */,
+				B4EA759A2112D8920001F42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4EA75C12112FFE70001F42C /* Build configuration list for PBXNativeTarget "XMRMiner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4EA75C22112FFE70001F42C /* Debug */,
+				B4EA75C32112FFE70001F42C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4EA757E2112D88F0001F42C /* Project object */;
+}
