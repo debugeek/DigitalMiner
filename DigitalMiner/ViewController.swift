@@ -35,16 +35,6 @@ class ViewController: UIViewController {
         })
     }
 
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if worker == nil {
-//            worker = XMRWorker(identifier: "default", host: "pool.supportxmr.com", port: 5555, username: other, password: "x")
-//            worker?.start()
-//        } else {
-//            worker?.stop()
-//            worker = nil
-//        }
-//    }
-
 }
 
 extension ViewController: XMRWorkerDelegate {

@@ -60,21 +60,44 @@ class XMRStream: NSObject, StreamDelegate {
         packets.removeAll()
 
         let operation = BlockOperation(block: {
-            var buffer = [UInt8](repeating: 0, count: 2048)
-            while true {
-                var response = Data()
+            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 4096)
+            var length = 0
 
-                let length: Int = self.input.read(&buffer, maxLength: buffer.count)
-                if length <= 0 {
+            while true {
+                let ret: Int = self.input.read(buffer.advanced(by: length), maxLength: 4096 - length)
+                if ret <= 0 {
                     break
                 }
 
-                response.append(buffer, count: length)
+                length += ret
 
-                let datas = response.split(separator: 0x0A)
-                for data in datas {
-                    self.delegate?.stream(stream: self, didReceivedData: data, error: nil)
+                if length >= 4096 {
+                    break
                 }
+
+                var lnstart = buffer
+                while true {
+                    guard let ptr = memchr(lnstart, 0x0A, length)?.assumingMemoryBound(to: UInt8.self) else {
+                        break
+                    }
+
+                    let lnend = ptr.advanced(by: 1)
+                    let lnlen = lnstart.distance(to: lnend)
+
+                    let lnbuf = UnsafeMutableRawPointer.allocate(byteCount: lnlen*MemoryLayout<UInt8>.size, alignment: MemoryLayout<UInt8>.size)
+                    memcpy(lnbuf, lnstart, lnlen)
+
+                    let data = Data(bytes: lnbuf, count: lnlen)
+                    self.delegate?.stream(stream: self, didReceivedData: data, error: nil)
+
+                    lnstart = lnend
+                    length -= lnlen
+                }
+
+                if length > 0, lnstart != buffer {
+                    memmove(buffer, lnstart, length)
+                }
+
             }
         })
         operationQueue.addOperation(operation)
