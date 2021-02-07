@@ -10,7 +10,7 @@ import Foundation
 
 struct XMRJob {
 
-    var jobID: String
+    var jobId: String
     var blob: Data
     var target: UInt64
 
@@ -21,8 +21,8 @@ struct XMRJob {
     }
 
 
-    init?(jobID: String, blob: String, target: String) {
-        self.jobID = jobID
+    init?(jobId: String, blob: String, target: String) {
+        self.jobId = jobId
 
         guard let blob = Data(hexString: blob), let target = Data(hexString: target) else {
             return nil

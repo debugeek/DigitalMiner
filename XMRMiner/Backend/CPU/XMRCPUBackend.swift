@@ -84,7 +84,7 @@ class XMRCPUBackend: XMRBackend, XMRCPUThreadDelegate {
     }
 
     func thread(CPUThread: XMRCPUThread, didFoundNonce nonce: UInt32, hash: UnsafeRawPointer, length: Int) {
-        guard let jobID = self.job?.jobID else {
+        guard let jobId = self.job?.jobId else {
             return
         }
 
@@ -94,7 +94,7 @@ class XMRCPUBackend: XMRBackend, XMRCPUThreadDelegate {
         let hashData = Data(bytes: hash, count: length)
         let hashString = hashData.hexString()
 
-        delegate?.backend(backend: self, didFoundNonce: nonceString, hash: hashString, jobID: jobID)
+        delegate?.backend(backend: self, didFoundNonce: nonceString, hash: hashString, jobId: jobId)
     }
 
     func thread(CPUThread: XMRCPUThread, didUpdateHashrate hashrate: Double) {

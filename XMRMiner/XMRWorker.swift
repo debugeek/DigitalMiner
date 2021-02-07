@@ -9,10 +9,10 @@
 import Foundation
 
 public protocol XMRWorkerDelegate {
-    func workerDidLogined(_ worker: XMRWorker)
-    func workerDidReceivedJob(_ worker: XMRWorker)
-    func workerDiSubmitted(_ worker: XMRWorker)
-    func workerDidReceivedError(_ worker: XMRWorker)
+    func worker(worker: XMRWorker, didLoginedWithWorkerId workerId: String)
+    func worker(worker: XMRWorker, didReceivedJobWithJobId jobId: String)
+    func worker(worker: XMRWorker, didSubmittedNoviceWithError error: Error?)
+    func worker(worker: XMRWorker, didOccurredError error: Error?)
 }
 
 public class XMRWorker {
@@ -79,17 +79,18 @@ public class XMRWorker {
 
 extension XMRWorker: XMRBackendDelegate {
 
-    func backend(backend: XMRBackend, didFoundNonce nonce: String, hash: String, jobID: String) {
-        session.submit(jobID: jobID, nonce: nonce, hash: hash)
+    func backend(backend: XMRBackend, didFoundNonce nonce: String, hash: String, jobId: String) {
+        session.submit(jobId: jobId, nonce: nonce, hash: hash) { [weak self] (error) in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.worker(worker: strongSelf, didSubmittedNoviceWithError: error)
+        }
     }
 
 }
 
 extension XMRWorker: XMRPoolSessionDelegate {
 
-    func session(session _: XMRPoolSession, didLoginedWithWorkerID workerID: String) {
-        delegate?.workerDidLogined(self)
-
+    func session(session _: XMRPoolSession, didLoginedWithWorkerId workerId: String) {
         var ncpu: Int = 0
         var size = MemoryLayout<Int>.size
         sysctlbyname("hw.ncpu", &ncpu, &size, nil, 0)
@@ -99,16 +100,18 @@ extension XMRWorker: XMRPoolSessionDelegate {
             CPUBackend.delegate = self
             backends.append(CPUBackend)
         }
+
+        delegate?.worker(worker: self, didLoginedWithWorkerId: workerId)
     }
 
     func session(session _: XMRPoolSession, didReceivedJob newJob: XMRJob) {
         if let oldJob = job {
-            if oldJob.jobID == newJob.jobID {
+            if oldJob.jobId == newJob.jobId {
                 return
             }
 
             if oldJob.blob == newJob.blob {
-                job?.jobID = newJob.jobID
+                job?.jobId = newJob.jobId
                 job?.target = newJob.target
                 return
             }
@@ -118,17 +121,13 @@ extension XMRWorker: XMRPoolSessionDelegate {
 
         balanceJobs()
 
-        delegate?.workerDidReceivedJob(self)
+        delegate?.worker(worker: self, didReceivedJobWithJobId: newJob.jobId)
     }
 
     func session(session _: XMRPoolSession, didReceivedError error: Error) {
-        delegate?.workerDidReceivedError(self)
-
         stop()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.start()
-        }
+        
+        delegate?.worker(worker: self, didOccurredError: error)
     }
 
 }

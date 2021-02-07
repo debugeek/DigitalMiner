@@ -11,19 +11,14 @@ import Foundation
 class XMRTimer {
 
     let timeInterval: TimeInterval
+    let repeated: Bool
+    private let timer: DispatchSourceTimer
 
-    init(timeInterval: TimeInterval) {
+    init(timeInterval: TimeInterval, repeated: Bool) {
         self.timeInterval = timeInterval
+        self.repeated = repeated
+        self.timer = DispatchSource.makeTimerSource()
     }
-
-    private lazy var timer: DispatchSourceTimer = {
-        let t = DispatchSource.makeTimerSource()
-        t.schedule(deadline: .now() + self.timeInterval, repeating: self.timeInterval)
-        t.setEventHandler(handler: { [weak self] in
-            self?.eventHandler?()
-        })
-        return t
-    }()
 
     var eventHandler: (() -> Void)?
 
@@ -47,6 +42,14 @@ class XMRTimer {
 
     func reschedule() {
         timer.schedule(deadline: .now() + self.timeInterval, repeating: self.timeInterval)
+
+        timer.setEventHandler(handler: { [weak self] in
+            self?.eventHandler?()
+
+            if self?.repeated ?? false {
+                self?.suspend()
+            }
+        })
     }
 
     func resume() {

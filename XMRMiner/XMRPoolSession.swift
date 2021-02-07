@@ -8,14 +8,12 @@
 
 import Foundation
 
-typealias XMRParameters = [String: Any]
-
 let XMRPoolSessionErrorDomain = "XMRPoolSessionErrorDomain"
 
 protocol XMRPoolSessionDelegate {
-    func session(session _: XMRPoolSession, didLoginedWithWorkerID workerID: String)
-    func session(session _: XMRPoolSession, didReceivedJob job: XMRJob)
-    func session(session _: XMRPoolSession, didReceivedError error: Error)
+    func session(session: XMRPoolSession, didLoginedWithWorkerId workerId: String)
+    func session(session: XMRPoolSession, didReceivedJob job: XMRJob)
+    func session(session: XMRPoolSession, didReceivedError error: Error)
 }
 
 public class XMRPoolSession {
@@ -25,16 +23,17 @@ public class XMRPoolSession {
 
     let stream: XMRStream
 
-    var workerID: String?
+    var workerId: String?
 
     var delegate: XMRPoolSessionDelegate?
 
+    private var seq: UInt32 = 0
+    private var completions = [UInt32: ((Error?, [String: Any]?) -> Void)]()
+
     lazy var timer: XMRTimer = {
-        let timer = XMRTimer(timeInterval: 20)
+        let timer = XMRTimer(timeInterval: 30, repeated: true)
         timer.eventHandler = { [weak self] in
-            if let workerID = self?.workerID {
-                self?.fetch(workerID: workerID)
-            }
+            self?.heartbeat()
         }
         return timer
     }()
@@ -54,82 +53,137 @@ public class XMRPoolSession {
     public func connect() {
         stream.open()
 
+        seq = 0
+        completions.removeAll()
+
         login()
     }
 
     public func disconnect() {
         stream.close()
 
-        workerID = nil
+        workerId = nil
     }
 
     public func login() {
-        let params: XMRParameters = ["method": "login", "params": ["login": username, "pass": password, "agent": "digital-miner/1.0"], "id": 1]
-        send(params: params)
+        sendCommand(command: "login", options: ["login": username, "pass": password, "agent": "digital-miner/1.0"]) { [weak self] (error, results) in
+            guard let results = results else {
+                return
+            }
+
+            if let workerId = results["id"] as? String {
+                self?.handleLogin(workerId: workerId)
+            }
+
+            if let job = results["job"] as? [String: Any] {
+                self?.handleJob(params: job)
+            }
+
+            self?.timer.reschedule()
+        }
     }
 
-    public func submit(jobID: String, nonce: String, hash: String) {
-        let params: XMRParameters = ["method": "submit", "params": ["id": workerID, "job_id": jobID, "nonce": nonce, "result": hash], "id": 1]
-        send(params: params)
-    }
-
-    public func fetch(workerID: String) {
-        let params: XMRParameters = ["method": "getjob", "params": ["id": workerID], "id": 1]
-        send(params: params)
-    }
-
-    private func send(params: XMRParameters, completion: ((XMRParameters) -> Void)? = nil) {
-        guard let tail = "\n".data(using: .utf8) else {
+    public func submit(jobId: String, nonce: String, hash: String,completion: @escaping ((Error?) -> ())) {
+        guard let workerId = workerId else {
+            completion(NSError(domain: XMRPoolSessionErrorDomain, code: 0, userInfo: nil))
             return
         }
 
-        do {
-            let data = try JSONSerialization.data(withJSONObject: params, options: [])
-            stream.send(data: data + tail)
-        } catch {}
+        sendCommand(command: "submit", options: ["id": workerId, "job_id": jobId, "nonce": nonce, "result": hash]) { [weak self] (error, results) in
+            if let error = error {
+                completion(error)
+            } else if let results = results, let status = results["status"] as? String, status == "OK" {
+                completion(nil)
+            } else {
+                completion(NSError(domain: XMRPoolSessionErrorDomain, code: 0, userInfo: nil))
+            }
+
+            self?.timer.reschedule()
+        }
     }
 
-    func handleResponse(response: XMRParameters) {
-        timer.reschedule()
+    public func heartbeat() {
+        guard let workerId = workerId else {
+            return
+        }
 
-        if let method = response["method"] as? String {
-            if method == "mining.set_extranonce" {
-                print("Detected buggy NiceHash pool code. Workaround engaged.")
-            } else if method == "job", let params = response["params"] as? [String: Any] {
-                handleJob(params: params)
-            } else {
-                print("Unsupported server method")
+        sendCommand(command: "getjob", options: ["id": workerId]) { [weak self] (error, results) in
+            if let job = results {
+                self?.handleJob(params: job)
             }
-        } else if let error = response["error"] as? [String: Any], let code = error["code"] as? Int, let description = error["message"] as? String {
-            handleError(error: NSError(domain: XMRPoolSessionErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: description]))
-        } else if let result = response["result"] as? [String: Any], let workerID = result["id"] as? String, let params = result["job"] as? [String: Any] {
-            handleLogin(workerID: workerID)
-            handleJob(params: params)
-        } else {
+        }
 
+        timer.reschedule()
+    }
+
+    private func sendCommand(command: String, options: [String: Any], completion: ((Error?, [String: Any]?) -> Void)? = nil) {
+        seq += 1
+
+        let params: [String: Any] = ["method": command, "params": options, "id": seq]
+
+        if let completion = completion {
+            completions[seq] = completion
+        }
+
+        send(params: params)
+    }
+
+    private func send(params: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: params, options: []) else {
+            return
+        }
+        stream.send(data: data)
+    }
+
+    func handleResponse(response: [String: Any]) {
+        if let method = response["method"] as? String {
+            handleCommand(command: method, params: response["params"] as? [String: Any]) { (error, results) in
+                if let seq = response["id"] as? UInt32, let params = results {
+                    self.send(params: ["id": seq, "result": params, "error": NSNull()])
+                }
+            }
+        } else if let result = response["result"] as? [String: Any] {
+            if let seq = response["id"] as? UInt32, let completion = completions[seq] {
+                completion(nil, result)
+                completions.removeValue(forKey: seq)
+            }
+        } else if let error = response["error"] as? [String: Any] {
+            if let seq = response["id"] as? UInt32, let completion = completions[seq] {
+                if let code = error["code"] as? Int, let description = error["message"] as? String {
+                    completion(NSError(domain: XMRPoolSessionErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: description]), nil)
+                }
+                completions.removeValue(forKey: seq)
+            }
+        } else {
+            debugPrint("Unsupported response")
+        }
+    }
+
+    func handleCommand(command: String, params: [String: Any]?, completion: ((Error?, [String: Any]?) -> ())) {
+        if command == "job", let params = params {
+            handleJob(params: params)
+            completion(nil, ["status": "OK"])
+        } else {
+            completion(nil, nil)
         }
     }
 
     func handleError(error: Error) {
-        timer.suspend()
-
         delegate?.session(session: self, didReceivedError: error)
     }
 
-    func handleLogin(workerID: String) {
-        self.workerID = workerID
+    func handleLogin(workerId: String) {
+        self.workerId = workerId
 
-        timer.resume()
-
-        delegate?.session(session: self, didLoginedWithWorkerID: workerID)
+        delegate?.session(session: self, didLoginedWithWorkerId: workerId)
     }
 
-    func handleJob(params: XMRParameters) {
-        guard let jobID = params["job_id"] as? String, let blob = params["blob"] as? String, let target = params["target"] as? String else {
+    func handleJob(params: [String: Any]) {
+        guard let jobId = params["job_id"] as? String, let blob = params["blob"] as? String, let target = params["target"] as? String else {
             return
         }
 
-        guard let job = XMRJob(jobID: jobID, blob: blob, target: target) else {
+        guard let job = XMRJob(jobId: jobId, blob: blob, target: target) else {
             return
         }
 
@@ -145,13 +199,11 @@ extension XMRPoolSession: XMRStreamDelegate {
         if let error = error {
             handleError(error: error)
         } else if let data = data {
-            do {
-                if let response = try JSONSerialization.jsonObject(with: data, options: []) as? XMRParameters {
-                    handleResponse(response: response)
-                } else {
-                    handleError(error: NSError(domain: XMRPoolSessionErrorDomain, code: 0, userInfo: nil))
-                }
-            } catch {}
+            if let response = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
+                handleResponse(response: response)
+            } else {
+                handleError(error: NSError(domain: XMRPoolSessionErrorDomain, code: 0, userInfo: nil))
+            }
         } else {
             handleError(error: NSError(domain: XMRPoolSessionErrorDomain, code: 0, userInfo: nil))
         }

@@ -38,21 +38,28 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: XMRWorkerDelegate {
-
-    func workerDidReceivedJob(_ worker: XMRWorker) {
-        print("New job received")
+    func worker(worker: XMRWorker, didLoginedWithWorkerId workerId: String) {
+        debugPrint("Worker logined \(workerId)")
     }
 
-    func workerDidLogined(_ worker: XMRWorker) {
-        print("Worker logined")
+    func worker(worker: XMRWorker, didReceivedJobWithJobId jobId: String) {
+        debugPrint("Job received \(jobId)")
     }
 
-    func workerDiSubmitted(_ worker: XMRWorker) {
-        print("Hash accepted")
+    func worker(worker: XMRWorker, didSubmittedNoviceWithError error: Error?) {
+        if let error = error {
+            debugPrint("Submitting rejected \(error)")
+        } else {
+            debugPrint("Submitting accepted")
+        }
     }
 
-    func workerDidReceivedError(_ worker: XMRWorker) {
-        print("Error occurred")
+    func worker(worker: XMRWorker, didOccurredError error: Error?) {
+        if let error = error {
+            debugPrint("Error occurred \(error)")
+        } else {
+            debugPrint("Error occurred")
+        }
     }
 
 }

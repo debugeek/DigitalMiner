@@ -16,14 +16,13 @@ protocol XMRStreamDelegate {
 
 class XMRStream: NSObject, StreamDelegate {
 
-    private var input: InputStream
-    private var output: OutputStream
+    private var inputStream: InputStream
+    private let inputBuffer: Buffer
 
-    private var packets = Queue<Data>()
+    private var outputStream: OutputStream
+    private let outputBuffer: Buffer
 
     private var runloop: RunLoop = .main
-
-    private let operationQueue: OperationQueue = OperationQueue()
 
     var delegate: XMRStreamDelegate?
 
@@ -36,143 +35,148 @@ class XMRStream: NSObject, StreamDelegate {
             return nil
         }
 
-        guard let input = inputStream, let output = outputStream else {
-            return nil
-        }
+        self.inputStream = inputStream!
+        self.outputStream = outputStream!
 
-        self.input = input
-        self.output = output
+        self.inputBuffer = Buffer(size: 4096)
+        self.outputBuffer = Buffer(size: 4096)
     }
 
     func open() {
-        input.setProperty(StreamNetworkServiceTypeValue.background, forKey: .networkServiceType)
-        output.setProperty(StreamNetworkServiceTypeValue.background, forKey: .networkServiceType)
+        inputBuffer.purge()
+        outputBuffer.purge()
 
-        input.delegate = self
-        output.delegate = self
+        inputStream.setProperty(StreamNetworkServiceTypeValue.background, forKey: .networkServiceType)
+        inputStream.delegate = self
+        inputStream.schedule(in: runloop, forMode: .common)
+        inputStream.open()
 
-        input.schedule(in: runloop, forMode: .common)
-        output.schedule(in: runloop, forMode: .common)
-
-        input.open()
-        output.open()
-
-        packets.removeAll()
-
-        let operation = BlockOperation(block: {
-            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 4096)
-            var length = 0
-
-            while true {
-                let ret: Int = self.input.read(buffer.advanced(by: length), maxLength: 4096 - length)
-                if ret <= 0 {
-                    break
-                }
-
-                length += ret
-
-                if length >= 4096 {
-                    break
-                }
-
-                var lnstart = buffer
-                while true {
-                    guard let ptr = memchr(lnstart, 0x0A, length)?.assumingMemoryBound(to: UInt8.self) else {
-                        break
-                    }
-
-                    let lnend = ptr.advanced(by: 1)
-                    let lnlen = lnstart.distance(to: lnend)
-
-                    let lnbuf = UnsafeMutableRawPointer.allocate(byteCount: lnlen*MemoryLayout<UInt8>.size, alignment: MemoryLayout<UInt8>.size)
-                    memcpy(lnbuf, lnstart, lnlen)
-
-                    let data = Data(bytes: lnbuf, count: lnlen)
-                    self.delegate?.stream(stream: self, didReceivedData: data, error: nil)
-
-                    lnstart = lnend
-                    length -= lnlen
-                }
-
-                if length > 0, lnstart != buffer {
-                    memmove(buffer, lnstart, length)
-                }
-
-            }
-        })
-        operationQueue.addOperation(operation)
+        outputStream.setProperty(StreamNetworkServiceTypeValue.background, forKey: .networkServiceType)
+        outputStream.delegate = self
+        outputStream.schedule(in: runloop, forMode: .common)
+        outputStream.open()
     }
 
     func close() {
-        operationQueue.cancelAllOperations()
+        inputStream.delegate = nil
+        inputStream.remove(from: runloop, forMode: .common)
+        inputStream.close()
 
-        input.delegate = nil
-        output.delegate = nil
+        outputStream.delegate = nil
+        outputStream.remove(from: runloop, forMode: .common)
+        outputStream.close()
 
-        input.remove(from: runloop, forMode: .common)
-        output.remove(from: runloop, forMode: .common)
-
-        input.close()
-        output.close()
-
-        packets.removeAll()
+        inputBuffer.purge()
+        outputBuffer.purge()
     }
 
-    private func sendNextIfNeeded() {
-        if output.streamStatus != .open || !output.hasSpaceAvailable {
+    private func sendNext() {
+        if outputBuffer.length == 0 {
             return
         }
 
-        while let data = packets.dequeue() {
-            data.write(toStream: output)
-            break
-        }
+        let ret = outputStream.write(outputBuffer.buffer, maxLength: outputBuffer.length)
+        _ = outputBuffer.dropFirst(length: ret)
     }
 
     public func send(data: Data) {
-        packets.enqueue(data)
-        sendNextIfNeeded()
+        var data = data
+        data.append(contentsOf: [0x0A])
+        data.withUnsafeMutableBytes { [data = data] (rawBufferPtr: UnsafeMutableRawBufferPointer) in
+            if let rawPtr = rawBufferPtr.baseAddress {
+                outputBuffer.append(datas: rawPtr.assumingMemoryBound(to: UInt8.self), count: data.count)
+            }
+        }
+
+        guard outputStream.streamStatus == .open, outputStream.hasSpaceAvailable else {
+            return
+        }
+
+        sendNext()
     }
 
-    // StreamDelegate
+    // MARK: NSStreamDelegate
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-        if aStream == input {
-            if eventCode == .errorOccurred {
-                delegate?.stream(stream: self, didReceivedData: nil, error: input.streamError)
+        if aStream == inputStream {
+            if eventCode == .hasBytesAvailable {
+                let datas = UnsafeMutablePointer<UInt8>.allocate(capacity: 4096)
+                var length = 0
+                while inputStream.hasBytesAvailable {
+                    let ret = inputStream.read(datas.advanced(by: length), maxLength: 4096 - length)
+                    if ret <= 0 {
+                        break
+                    }
+                    length += ret
+                }
+                inputBuffer.append(datas: datas, count: length)
+
+                while let line = inputBuffer.dropFirstLine() {
+                    let data = Data(bytes: line.0, count: line.1 - 1)
+                    self.delegate?.stream(stream: self, didReceivedData: data, error: nil)
+                }
+            } else if eventCode == .errorOccurred {
+                delegate?.stream(stream: self, didReceivedData: nil, error: aStream.streamError)
             }
-        } else if aStream == output {
+        } else if aStream == outputStream {
             if eventCode == .errorOccurred {
-                delegate?.stream(stream: self, didReceivedData: nil, error: output.streamError)
+                delegate?.stream(stream: self, didReceivedData: nil, error: aStream.streamError)
             } else if eventCode == .hasSpaceAvailable {
-                sendNextIfNeeded()
+                sendNext()
             }
         }
     }
 
 }
 
+fileprivate class Buffer {
+    private(set) var buffer: UnsafeMutablePointer<UInt8>
+    private(set) var length: Int
 
-fileprivate class Queue<T> {
-    var queue = [T]()
+    private let size: Int
 
-    var isEmpty: Bool {
-        get {
-            return queue.count == 0
+    init(size: Int) {
+        self.size = size
+
+        buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
+        length = 0
+    }
+
+    func purge() {
+        memset(buffer, 0x00, size)
+        length = 0
+    }
+
+    func append(datas: UnsafeMutablePointer<UInt8>, count: Int) {
+        if length + count > size {
+            return
         }
+
+        memmove(buffer, datas, count)
+        length += count
+
+        return
     }
 
-    func enqueue(_ element: T) {
-        queue.append(element)
-    }
-
-    func dequeue() -> T? {
-        if queue.count > 0 {
-            return queue.remove(at: 0)
+    func dropFirstLine() -> (UnsafeMutablePointer<UInt8>, Int)? {
+        guard let ptr = memchr(buffer, 0x0A, length)?.assumingMemoryBound(to: UInt8.self) else {
+            return nil
         }
-        return nil
+
+        let start = buffer
+        let end = ptr.advanced(by: 1)
+
+        return dropFirst(length: start.distance(to: end))
     }
 
-    func removeAll() {
-        queue.removeAll(keepingCapacity: false)
+    func dropFirst(length: Int) -> (UnsafeMutablePointer<UInt8>, Int)? {
+        if length > self.length {
+            return nil
+        }
+
+        let start = buffer
+        self.length -= length
+        memmove(buffer, buffer.advanced(by: length), self.length)
+        return (start, length)
     }
+
 }

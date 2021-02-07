@@ -10,7 +10,7 @@ import Foundation
 
 protocol XMRBackendDelegate {
 
-    func backend(backend: XMRBackend, didFoundNonce nonce: String, hash: String, jobID: String)
+    func backend(backend: XMRBackend, didFoundNonce nonce: String, hash: String, jobId: String)
 
 }
 
