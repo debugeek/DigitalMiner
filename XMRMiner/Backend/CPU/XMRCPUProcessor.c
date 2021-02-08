@@ -13,17 +13,14 @@
 
 #include "hash-ops.h"
 
-void xmr_hash(void *blob, uint32_t length, uint32_t nonce, uint8_t *hash) {
+void xmr_hash(void *blob, uint32_t length, uint8_t *hash) {
+    __attribute__((aligned(16))) uint8_t buffer[128];
+    memmove(buffer, blob, length);
 
-    __attribute__((aligned(16))) uint8_t blob_buffer[128];
-
-    memmove(blob_buffer, blob, length);
-    memmove(blob_buffer + 39, &nonce, sizeof(nonce));
-
-    static void *hashbuf = NULL;
-    if (hashbuf == NULL) {
-        hashbuf = cn_slow_hash_alloc();
+    static void *ctx = NULL;
+    if (ctx == NULL) {
+        ctx = cn_slow_hash_alloc();
     }
 
-    cn_slow_hash(blob_buffer, length, hash, hashbuf);
+    cn_slow_hash(buffer, length, hash, ctx);
 }

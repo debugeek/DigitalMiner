@@ -8,38 +8,40 @@
 
 import Foundation
 
+struct XMRHash {
+    static let size = 32
+
+    fileprivate var raw = [UInt8]()
+
+    var bytes: [UInt8] {
+        get { return raw }
+        set { raw = newValue }
+    }
+    init(bytes: [UInt8]) { self.bytes = bytes }
+
+    var uints: [UInt64] {
+        get {
+            let length = Int(ceil(Double(raw.count)/Double(MemoryLayout<UInt64>.size)))
+            var buffer = [UInt64](repeating: 0, count: length)
+            memmove(&buffer, raw, length*MemoryLayout<UInt64>.size)
+            return buffer
+        }
+        set {
+            let length = newValue.count*MemoryLayout<UInt64>.size
+            var buffer = [UInt8](repeating: 0, count: length)
+            memmove(&buffer, newValue, length)
+            raw = buffer
+        }
+    }
+    init(uints: [UInt64]) { self.uints = uints }
+}
+
 struct XMRJob {
 
-    var jobId: String
-    var blob: Data
-    var target: UInt64
+    let jobId: String
 
-    var difficulty: UInt64 {
-        get {
-            return 0xFFFFFFFFFFFFFFFF/target
-        }
-    }
+    let target: UInt64
 
-
-    init?(jobId: String, blob: String, target: String) {
-        self.jobId = jobId
-
-        guard let blob = Data(hexString: blob), let target = Data(hexString: target) else {
-            return nil
-        }
-
-        self.blob = blob
-
-        if let target32 = target.uint32() {
-            let a: UInt64 = 0xFFFFFFFFFFFFFFFF
-            let b: UInt64 = 0xFFFFFFFF
-            self.target = a / (b / UInt64(target32))
-        } else if let target64 = target.uint64() {
-            self.target = target64
-        } else {
-            return nil
-        }
-    }
-
+    let blob: Data
 
 }

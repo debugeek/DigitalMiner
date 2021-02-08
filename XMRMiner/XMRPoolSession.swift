@@ -83,7 +83,7 @@ public class XMRPoolSession {
         }
     }
 
-    public func submit(jobId: String, nonce: String, hash: String,completion: @escaping ((Error?) -> ())) {
+    public func submit(hash: String, jobId: String, nonce: String, completion: @escaping ((Error?) -> ())) {
         guard let workerId = workerId else {
             completion(NSError(domain: XMRPoolSessionErrorDomain, code: 0, userInfo: nil))
             return
@@ -179,13 +179,34 @@ public class XMRPoolSession {
     }
 
     func handleJob(params: [String: Any]) {
-        guard let jobId = params["job_id"] as? String, let blob = params["blob"] as? String, let target = params["target"] as? String else {
+        guard let jobId = params["job_id"] as? String else {
             return
         }
 
-        guard let job = XMRJob(jobId: jobId, blob: blob, target: target) else {
+        guard let blobString = params["blob"] as? String, let blob = Data(hexString: blobString) else {
             return
         }
+
+        guard let targetString = params["target"] as? String, let targetData = Data(hexString: targetString) else {
+            return
+        }
+
+        var target: UInt64 = 0
+        if targetData.count == 4 {
+            let target32: UInt32 = targetData.withUnsafeBytes { bytes in
+                return bytes.load(as: UInt32.self)
+            }
+            target = 0xFFFFFFFFFFFFFFFF/(0xFFFFFFFF/(UInt64(target32)))
+        } else if targetData.count == 8 {
+            let target64: UInt64 = targetData.withUnsafeBytes { bytes in
+                return bytes.load(as: UInt64.self)
+            }
+            target = target64
+        } else {
+            return
+        }
+
+        let job = XMRJob(jobId: jobId, target: target, blob: blob)
 
         delegate?.session(session: self, didReceivedJob: job)
     }

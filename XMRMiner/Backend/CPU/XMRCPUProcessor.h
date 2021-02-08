@@ -12,6 +12,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void xmr_hash(void *blob, uint32_t length, uint32_t nonce, uint8_t *hash);
+void xmr_hash(void *blob, uint32_t length, uint8_t *hash);
 
 #endif /* XMRCPUProcessor_h */

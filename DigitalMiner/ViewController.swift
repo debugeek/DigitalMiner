@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        worker = XMRWorker(identifier: "default", host: "pool.supportxmr.com", port: 5555, username: other, password: "x")
+        worker = XMRWorker(identifier: "default", host: "xmr-asia1.nanopool.org", port: 14444, username: other, password: "x")
         worker?.delegate = self
         worker?.start()
 

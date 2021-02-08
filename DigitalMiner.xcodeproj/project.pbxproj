@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,8 @@
 		B4EA75CB211300440001F42C /* XMRWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75CA211300440001F42C /* XMRWorker.swift */; };
 		B4EA75CF211300A50001F42C /* libXMRMiner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EA75BD2112FFE70001F42C /* libXMRMiner.a */; };
 		B4EA75D1211307F60001F42C /* XMRPoolSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75D0211307F60001F42C /* XMRPoolSession.swift */; };
+		D24DA56225D11DDD00A82F08 /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = D24DA56125D11DDD00A82F08 /* Atomics */; };
+		D24DA56625D124FE00A82F08 /* XMRBackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DA56525D124FE00A82F08 /* XMRBackendCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,7 @@
 		B4EA75CA211300440001F42C /* XMRWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRWorker.swift; sourceTree = "<group>"; };
 		B4EA75CC2113007D0001F42C /* XMRMiner-unbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMRMiner-unbrella.h"; sourceTree = "<group>"; };
 		B4EA75D0211307F60001F42C /* XMRPoolSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRPoolSession.swift; sourceTree = "<group>"; };
+		D24DA56525D124FE00A82F08 /* XMRBackendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRBackendCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D24DA56225D11DDD00A82F08 /* Atomics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +131,7 @@
 			children = (
 				B45DACAA211521D7004988D9 /* CPU */,
 				B45DACAB21152226004988D9 /* XMRBackend.swift */,
+				D24DA56525D124FE00A82F08 /* XMRBackendCoordinator.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -235,6 +240,8 @@
 				B4EA75CE211300A10001F42C /* PBXTargetDependency */,
 			);
 			name = DigitalMiner;
+			packageProductDependencies = (
+			);
 			productName = DigitalMiner;
 			productReference = B4EA75862112D88F0001F42C /* DigitalMiner.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +259,9 @@
 			dependencies = (
 			);
 			name = XMRMiner;
+			packageProductDependencies = (
+				D24DA56125D11DDD00A82F08 /* Atomics */,
+			);
 			productName = XMRMiner;
 			productReference = B4EA75BD2112FFE70001F42C /* libXMRMiner.a */;
 			productType = "com.apple.product-type.library.static";
@@ -284,6 +294,9 @@
 				Base,
 			);
 			mainGroup = B4EA757D2112D88F0001F42C;
+			packageReferences = (
+				D24DA56025D11DDD00A82F08 /* XCRemoteSwiftPackageReference "swift-atomics" */,
+			);
 			productRefGroup = B4EA75872112D88F0001F42C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -342,6 +355,7 @@
 				B4EA75C9211300320001F42C /* XMRTask.swift in Sources */,
 				B45DACDD2115245B004988D9 /* hash-extra-groestl.c in Sources */,
 				B4EA75C7211300270001F42C /* XMRMiner.swift in Sources */,
+				D24DA56625D124FE00A82F08 /* XMRBackendCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +511,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DigitalMiner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -505,6 +522,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.debugeek.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -513,6 +531,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DigitalMiner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -521,6 +542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.debugeek.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -596,6 +618,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D24DA56025D11DDD00A82F08 /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:apple/swift-atomics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D24DA56125D11DDD00A82F08 /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D24DA56025D11DDD00A82F08 /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B4EA757E2112D88F0001F42C /* Project object */;
 }

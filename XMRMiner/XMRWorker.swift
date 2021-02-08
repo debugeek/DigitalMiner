@@ -61,26 +61,12 @@ public class XMRWorker {
         }
     }
 
-    func balanceJobs() {
-        if backends.count == 0 {
-            return
-        }
-
-        var nonce: UInt32 = 0
-        let steps: UInt32 = UInt32.max/UInt32(backends.count)
-        for backend in backends {
-            backend.nonce = nonce
-            backend.job = job
-            nonce += steps
-        }
-    }
-
 }
 
 extension XMRWorker: XMRBackendDelegate {
 
-    func backend(backend: XMRBackend, didFoundNonce nonce: String, hash: String, jobId: String) {
-        session.submit(jobId: jobId, nonce: nonce, hash: hash) { [weak self] (error) in
+    func backend(backend: XMRBackend, didFoundHash hash: String, forNonce nonce: String, jobId: String) {
+        session.submit(hash: hash, jobId: jobId, nonce: nonce) { [weak self] (error) in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.worker(worker: strongSelf, didSubmittedNoviceWithError: error)
         }
@@ -105,22 +91,18 @@ extension XMRWorker: XMRPoolSessionDelegate {
     }
 
     func session(session _: XMRPoolSession, didReceivedJob newJob: XMRJob) {
-        if let oldJob = job {
-            if oldJob.jobId == newJob.jobId {
-                return
-            }
-
-            if oldJob.blob == newJob.blob {
-                job?.jobId = newJob.jobId
-                job?.target = newJob.target
-                return
-            }
+        if let oldJob = job, oldJob.jobId == newJob.jobId {
+            return
         }
 
         job = newJob
 
-        balanceJobs()
+        XMRBackendCoordinator.shared.update(blob: newJob.blob, target: newJob.target)
 
+        for backend in backends {
+            backend.job = job
+        }
+        
         delegate?.worker(worker: self, didReceivedJobWithJobId: newJob.jobId)
     }
 

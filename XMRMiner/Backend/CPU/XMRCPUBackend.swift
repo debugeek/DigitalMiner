@@ -9,9 +9,8 @@
 import Foundation
 
 protocol XMRCPUThreadDelegate {
-    func thread(CPUThread: XMRCPUThread, requireJobForTimestamp: TimeInterval) -> XMRJob?
-    func thread(CPUThread: XMRCPUThread, requireNonceForTimestamp: TimeInterval) -> UInt32?
-    func thread(CPUThread: XMRCPUThread, didFoundNonce nonce: UInt32, hash: UnsafeRawPointer, length: Int)
+    func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32)
+    func thread(CPUThread: XMRCPUThread, didFoundHash hash: String, forNonce nonce: String)
     func thread(CPUThread: XMRCPUThread, didUpdateHashrate hashrate: Double)
 }
 
@@ -19,34 +18,47 @@ class XMRCPUThread: Thread {
 
     var delegate: XMRCPUThreadDelegate?
 
-    override func main() {
+    private var hashCount: UInt64 = 0
+    private var hashRate: Double = 0
 
-        let hash = UnsafeMutablePointer<UInt8>.allocate(capacity: 32)
+    override func main() {
+        var bytes = [UInt8](repeating: 0, count: 32)
+        var lluints = [UInt64](repeating: 0, count: 4)
+
+        var starttime = timeval()
+        var endtime = timeval()
 
         while !isCancelled {
-            let timestamp = Date.timeIntervalBetween1970AndReferenceDate
+            var blob: Data?
+            var nonce: UInt32 = 0
+            var target: UInt64 = 0
+            delegate?.thread(CPUThread: self, acquiresBlob: &blob, target: &target, nonce: &nonce)
 
-            guard var job = delegate?.thread(CPUThread: self, requireJobForTimestamp: timestamp),
-                let nonce = delegate?.thread(CPUThread: self, requireNonceForTimestamp: timestamp) else {
-                Thread.sleep(forTimeInterval: 0.01)
-                continue
+            if var blob = blob {
+                blob.withUnsafeMutableBytes { [length = UInt32(blob.count)] (rawBufferPtr: UnsafeMutableRawBufferPointer) in
+                    guard let ptr = rawBufferPtr.baseAddress else {
+                        return
+                    }
+
+                    gettimeofday(&starttime, nil)
+
+                    // hardcode nonce offset = 39
+                    memmove(ptr + 39, &nonce, 4)
+                    xmr_hash(ptr, length, &bytes)
+                    memmove(&lluints, &bytes, 32)
+
+                    gettimeofday(&endtime, nil)
+
+                    if lluints[3] < target {
+                        delegate?.thread(CPUThread: self,
+                                         didFoundHash: Data(bytes: bytes, count: 32).hexString(),
+                                         forNonce: Data(bytes: &nonce, count: 4).hexString())
+                    }
+
+                    let duration = Double(endtime.tv_sec - starttime.tv_sec)*1000000 + Double(endtime.tv_usec - starttime.tv_usec)
+                    delegate?.thread(CPUThread: self, didUpdateHashrate: 1.0/(duration/1000000))
+                }
             }
-
-            var blob: UnsafeMutablePointer<Int8>?
-            job.blob.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Int8>) -> Void in
-                blob = bytes
-            }
-
-            let beginTime = CFAbsoluteTimeGetCurrent()
-
-            xmr_hash(blob, UInt32(job.blob.count), nonce, hash)
-
-            if let target = Data(bytes: hash.advanced(by: 24), count: MemoryLayout<UInt64>.size).uint64(), target < job.target {
-                delegate?.thread(CPUThread: self, didFoundNonce: nonce, hash: hash, length: 32)
-            }
-
-            let endTime = CFAbsoluteTimeGetCurrent()
-            delegate?.thread(CPUThread: self, didUpdateHashrate: 1.0/(endTime - beginTime))
         }
     }
 }
@@ -75,31 +87,23 @@ class XMRCPUBackend: XMRBackend, XMRCPUThreadDelegate {
         }
     }
 
-    func thread(CPUThread: XMRCPUThread, requireJobForTimestamp: TimeInterval) -> XMRJob? {
-        return self.job
+    func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32) {
+        blob = XMRBackendCoordinator.shared.blob
+        target = XMRBackendCoordinator.shared.target
+        nonce = XMRBackendCoordinator.shared.nextNonce()
     }
 
-    func thread(CPUThread: XMRCPUThread, requireNonceForTimestamp: TimeInterval) -> UInt32? {
-        return self.nextNonce(nonce: 1)
-    }
-
-    func thread(CPUThread: XMRCPUThread, didFoundNonce nonce: UInt32, hash: UnsafeRawPointer, length: Int) {
+    func thread(CPUThread: XMRCPUThread, didFoundHash hash: String, forNonce nonce: String) {
         guard let jobId = self.job?.jobId else {
             return
         }
-
-        var nonce = nonce
-        let nonceString = Data(bytes: &nonce, count: MemoryLayout<UInt32>.size(ofValue: nonce)).hexString()
-
-        let hashData = Data(bytes: hash, count: length)
-        let hashString = hashData.hexString()
-
-        delegate?.backend(backend: self, didFoundNonce: nonceString, hash: hashString, jobId: jobId)
+        delegate?.backend(backend: self, didFoundHash: hash, forNonce: nonce, jobId: jobId)
     }
 
     func thread(CPUThread: XMRCPUThread, didUpdateHashrate hashrate: Double) {
         self.hashrate = hashrate
     }
+    
 }
 
 
