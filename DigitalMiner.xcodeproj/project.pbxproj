@@ -12,16 +12,6 @@
 		B45DACA82114865B004988D9 /* XMRUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACA72114865A004988D9 /* XMRUtils.swift */; };
 		B45DACAC21152226004988D9 /* XMRBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACAB21152226004988D9 /* XMRBackend.swift */; };
 		B45DACAE2115224B004988D9 /* XMRCPUBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DACAD2115224B004988D9 /* XMRCPUBackend.swift */; };
-		B45DACDC2115245B004988D9 /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACC92115245B004988D9 /* keccak.c */; };
-		B45DACDD2115245B004988D9 /* hash-extra-groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACCB2115245B004988D9 /* hash-extra-groestl.c */; };
-		B45DACDE2115245B004988D9 /* hash-extra-blake.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACCD2115245B004988D9 /* hash-extra-blake.c */; };
-		B45DACDF2115245B004988D9 /* blake256.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACCE2115245B004988D9 /* blake256.c */; };
-		B45DACE02115245B004988D9 /* hash-extra-jh.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD22115245B004988D9 /* hash-extra-jh.c */; };
-		B45DACE12115245B004988D9 /* jh.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD32115245B004988D9 /* jh.c */; };
-		B45DACE22115245B004988D9 /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD52115245B004988D9 /* groestl.c */; };
-		B45DACE32115245B004988D9 /* hash-extra-skein.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD72115245B004988D9 /* hash-extra-skein.c */; };
-		B45DACE42115245B004988D9 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACD82115245B004988D9 /* skein.c */; };
-		B45DACE52115245B004988D9 /* slow-hash.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACDB2115245B004988D9 /* slow-hash.c */; };
 		B45DACE821154254004988D9 /* XMRCPUProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = B45DACE721154254004988D9 /* XMRCPUProcessor.c */; };
 		B4D3C7E921390E3D002F4E82 /* XMRTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3C7E821390E3D002F4E82 /* XMRTimer.swift */; };
 		B4EA758A2112D88F0001F42C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75892112D88F0001F42C /* AppDelegate.swift */; };
@@ -36,6 +26,16 @@
 		B4EA75D1211307F60001F42C /* XMRPoolSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA75D0211307F60001F42C /* XMRPoolSession.swift */; };
 		D24DA56225D11DDD00A82F08 /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = D24DA56125D11DDD00A82F08 /* Atomics */; };
 		D24DA56625D124FE00A82F08 /* XMRBackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DA56525D124FE00A82F08 /* XMRBackendCoordinator.swift */; };
+		D295739B25DA7EEA00261A95 /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = D295738725DA7EEA00261A95 /* keccak.c */; };
+		D295739C25DA7EEA00261A95 /* hash-extra-groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = D295738925DA7EEA00261A95 /* hash-extra-groestl.c */; };
+		D295739D25DA7EEA00261A95 /* hash-extra-blake.c in Sources */ = {isa = PBXBuildFile; fileRef = D295738B25DA7EEA00261A95 /* hash-extra-blake.c */; };
+		D295739E25DA7EEA00261A95 /* blake256.c in Sources */ = {isa = PBXBuildFile; fileRef = D295738C25DA7EEA00261A95 /* blake256.c */; };
+		D295739F25DA7EEA00261A95 /* hash-extra-jh.c in Sources */ = {isa = PBXBuildFile; fileRef = D295739125DA7EEA00261A95 /* hash-extra-jh.c */; };
+		D29573A025DA7EEA00261A95 /* jh.c in Sources */ = {isa = PBXBuildFile; fileRef = D295739225DA7EEA00261A95 /* jh.c */; };
+		D29573A125DA7EEA00261A95 /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = D295739425DA7EEA00261A95 /* groestl.c */; };
+		D29573A225DA7EEA00261A95 /* hash-extra-skein.c in Sources */ = {isa = PBXBuildFile; fileRef = D295739625DA7EEA00261A95 /* hash-extra-skein.c */; };
+		D29573A325DA7EEA00261A95 /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = D295739725DA7EEA00261A95 /* skein.c */; };
+		D29573A425DA7EEA00261A95 /* slow-hash.c in Sources */ = {isa = PBXBuildFile; fileRef = D295739A25DA7EEA00261A95 /* slow-hash.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,25 +66,6 @@
 		B45DACA72114865A004988D9 /* XMRUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRUtils.swift; sourceTree = "<group>"; };
 		B45DACAB21152226004988D9 /* XMRBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRBackend.swift; sourceTree = "<group>"; };
 		B45DACAD2115224B004988D9 /* XMRCPUBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRCPUBackend.swift; sourceTree = "<group>"; };
-		B45DACC92115245B004988D9 /* keccak.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keccak.c; sourceTree = "<group>"; };
-		B45DACCA2115245B004988D9 /* groestl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl.h; sourceTree = "<group>"; };
-		B45DACCB2115245B004988D9 /* hash-extra-groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-groestl.c"; sourceTree = "<group>"; };
-		B45DACCC2115245B004988D9 /* jh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jh.h; sourceTree = "<group>"; };
-		B45DACCD2115245B004988D9 /* hash-extra-blake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-blake.c"; sourceTree = "<group>"; };
-		B45DACCE2115245B004988D9 /* blake256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake256.c; sourceTree = "<group>"; };
-		B45DACCF2115245B004988D9 /* skein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein.h; sourceTree = "<group>"; };
-		B45DACD02115245B004988D9 /* skein_port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein_port.h; sourceTree = "<group>"; };
-		B45DACD12115245B004988D9 /* groestl_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl_tables.h; sourceTree = "<group>"; };
-		B45DACD22115245B004988D9 /* hash-extra-jh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-jh.c"; sourceTree = "<group>"; };
-		B45DACD32115245B004988D9 /* jh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jh.c; sourceTree = "<group>"; };
-		B45DACD42115245B004988D9 /* hash-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hash-ops.h"; sourceTree = "<group>"; };
-		B45DACD52115245B004988D9 /* groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = groestl.c; sourceTree = "<group>"; };
-		B45DACD62115245B004988D9 /* keccak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keccak.h; sourceTree = "<group>"; };
-		B45DACD72115245B004988D9 /* hash-extra-skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-skein.c"; sourceTree = "<group>"; };
-		B45DACD82115245B004988D9 /* skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = skein.c; sourceTree = "<group>"; };
-		B45DACD92115245B004988D9 /* blake256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blake256.h; sourceTree = "<group>"; };
-		B45DACDA2115245B004988D9 /* int-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "int-util.h"; sourceTree = "<group>"; };
-		B45DACDB2115245B004988D9 /* slow-hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "slow-hash.c"; sourceTree = "<group>"; };
 		B45DACE621154254004988D9 /* XMRCPUProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMRCPUProcessor.h; sourceTree = "<group>"; };
 		B45DACE721154254004988D9 /* XMRCPUProcessor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = XMRCPUProcessor.c; sourceTree = "<group>"; };
 		B4D3C7E821390E3D002F4E82 /* XMRTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRTimer.swift; sourceTree = "<group>"; };
@@ -104,6 +85,26 @@
 		B4EA75CC2113007D0001F42C /* XMRMiner-unbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMRMiner-unbrella.h"; sourceTree = "<group>"; };
 		B4EA75D0211307F60001F42C /* XMRPoolSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRPoolSession.swift; sourceTree = "<group>"; };
 		D24DA56525D124FE00A82F08 /* XMRBackendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMRBackendCoordinator.swift; sourceTree = "<group>"; };
+		D295738725DA7EEA00261A95 /* keccak.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keccak.c; sourceTree = "<group>"; };
+		D295738825DA7EEA00261A95 /* groestl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl.h; sourceTree = "<group>"; };
+		D295738925DA7EEA00261A95 /* hash-extra-groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-groestl.c"; sourceTree = "<group>"; };
+		D295738A25DA7EEA00261A95 /* jh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jh.h; sourceTree = "<group>"; };
+		D295738B25DA7EEA00261A95 /* hash-extra-blake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-blake.c"; sourceTree = "<group>"; };
+		D295738C25DA7EEA00261A95 /* blake256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blake256.c; sourceTree = "<group>"; };
+		D295738D25DA7EEA00261A95 /* skein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein.h; sourceTree = "<group>"; };
+		D295738E25DA7EEA00261A95 /* variant4_random_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = variant4_random_math.h; sourceTree = "<group>"; };
+		D295738F25DA7EEA00261A95 /* skein_port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein_port.h; sourceTree = "<group>"; };
+		D295739025DA7EEA00261A95 /* groestl_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groestl_tables.h; sourceTree = "<group>"; };
+		D295739125DA7EEA00261A95 /* hash-extra-jh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-jh.c"; sourceTree = "<group>"; };
+		D295739225DA7EEA00261A95 /* jh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jh.c; sourceTree = "<group>"; };
+		D295739325DA7EEA00261A95 /* hash-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hash-ops.h"; sourceTree = "<group>"; };
+		D295739425DA7EEA00261A95 /* groestl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = groestl.c; sourceTree = "<group>"; };
+		D295739525DA7EEA00261A95 /* keccak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keccak.h; sourceTree = "<group>"; };
+		D295739625DA7EEA00261A95 /* hash-extra-skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hash-extra-skein.c"; sourceTree = "<group>"; };
+		D295739725DA7EEA00261A95 /* skein.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = skein.c; sourceTree = "<group>"; };
+		D295739825DA7EEA00261A95 /* blake256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blake256.h; sourceTree = "<group>"; };
+		D295739925DA7EEA00261A95 /* int-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "int-util.h"; sourceTree = "<group>"; };
+		D295739A25DA7EEA00261A95 /* slow-hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "slow-hash.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,38 +140,12 @@
 		B45DACAA211521D7004988D9 /* CPU */ = {
 			isa = PBXGroup;
 			children = (
-				B45DACC82115245B004988D9 /* crypto */,
+				D295738625DA7EEA00261A95 /* crypto */,
 				B45DACAD2115224B004988D9 /* XMRCPUBackend.swift */,
 				B45DACE621154254004988D9 /* XMRCPUProcessor.h */,
 				B45DACE721154254004988D9 /* XMRCPUProcessor.c */,
 			);
 			path = CPU;
-			sourceTree = "<group>";
-		};
-		B45DACC82115245B004988D9 /* crypto */ = {
-			isa = PBXGroup;
-			children = (
-				B45DACCE2115245B004988D9 /* blake256.c */,
-				B45DACD92115245B004988D9 /* blake256.h */,
-				B45DACD12115245B004988D9 /* groestl_tables.h */,
-				B45DACD52115245B004988D9 /* groestl.c */,
-				B45DACCA2115245B004988D9 /* groestl.h */,
-				B45DACCD2115245B004988D9 /* hash-extra-blake.c */,
-				B45DACCB2115245B004988D9 /* hash-extra-groestl.c */,
-				B45DACD22115245B004988D9 /* hash-extra-jh.c */,
-				B45DACD72115245B004988D9 /* hash-extra-skein.c */,
-				B45DACD42115245B004988D9 /* hash-ops.h */,
-				B45DACDA2115245B004988D9 /* int-util.h */,
-				B45DACD32115245B004988D9 /* jh.c */,
-				B45DACCC2115245B004988D9 /* jh.h */,
-				B45DACC92115245B004988D9 /* keccak.c */,
-				B45DACD62115245B004988D9 /* keccak.h */,
-				B45DACD02115245B004988D9 /* skein_port.h */,
-				B45DACD82115245B004988D9 /* skein.c */,
-				B45DACCF2115245B004988D9 /* skein.h */,
-				B45DACDB2115245B004988D9 /* slow-hash.c */,
-			);
-			path = crypto;
 			sourceTree = "<group>";
 		};
 		B4EA757D2112D88F0001F42C = {
@@ -221,6 +196,33 @@
 				B4D3C7E821390E3D002F4E82 /* XMRTimer.swift */,
 			);
 			path = XMRMiner;
+			sourceTree = "<group>";
+		};
+		D295738625DA7EEA00261A95 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				D295738C25DA7EEA00261A95 /* blake256.c */,
+				D295739825DA7EEA00261A95 /* blake256.h */,
+				D295739025DA7EEA00261A95 /* groestl_tables.h */,
+				D295739425DA7EEA00261A95 /* groestl.c */,
+				D295738825DA7EEA00261A95 /* groestl.h */,
+				D295738B25DA7EEA00261A95 /* hash-extra-blake.c */,
+				D295738925DA7EEA00261A95 /* hash-extra-groestl.c */,
+				D295739125DA7EEA00261A95 /* hash-extra-jh.c */,
+				D295739625DA7EEA00261A95 /* hash-extra-skein.c */,
+				D295739325DA7EEA00261A95 /* hash-ops.h */,
+				D295739925DA7EEA00261A95 /* int-util.h */,
+				D295739225DA7EEA00261A95 /* jh.c */,
+				D295738A25DA7EEA00261A95 /* jh.h */,
+				D295738725DA7EEA00261A95 /* keccak.c */,
+				D295739525DA7EEA00261A95 /* keccak.h */,
+				D295738F25DA7EEA00261A95 /* skein_port.h */,
+				D295739725DA7EEA00261A95 /* skein.c */,
+				D295738D25DA7EEA00261A95 /* skein.h */,
+				D295739A25DA7EEA00261A95 /* slow-hash.c */,
+				D295738E25DA7EEA00261A95 /* variant4_random_math.h */,
+			);
+			path = crypto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,27 +336,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B45DACE12115245B004988D9 /* jh.c in Sources */,
-				B45DACDE2115245B004988D9 /* hash-extra-blake.c in Sources */,
+				D29573A325DA7EEA00261A95 /* skein.c in Sources */,
+				D29573A125DA7EEA00261A95 /* groestl.c in Sources */,
+				D295739D25DA7EEA00261A95 /* hash-extra-blake.c in Sources */,
 				B45DACA82114865B004988D9 /* XMRUtils.swift in Sources */,
+				D29573A225DA7EEA00261A95 /* hash-extra-skein.c in Sources */,
 				B40EA2D02113567100D6911F /* XMRJob.swift in Sources */,
+				D29573A025DA7EEA00261A95 /* jh.c in Sources */,
 				B45DACAC21152226004988D9 /* XMRBackend.swift in Sources */,
-				B45DACDC2115245B004988D9 /* keccak.c in Sources */,
-				B45DACE42115245B004988D9 /* skein.c in Sources */,
-				B45DACDF2115245B004988D9 /* blake256.c in Sources */,
 				B45DACA52113F6F6004988D9 /* XMRStream.swift in Sources */,
 				B45DACAE2115224B004988D9 /* XMRCPUBackend.swift in Sources */,
-				B45DACE02115245B004988D9 /* hash-extra-jh.c in Sources */,
-				B45DACE52115245B004988D9 /* slow-hash.c in Sources */,
-				B45DACE22115245B004988D9 /* groestl.c in Sources */,
 				B45DACE821154254004988D9 /* XMRCPUProcessor.c in Sources */,
+				D295739E25DA7EEA00261A95 /* blake256.c in Sources */,
+				D29573A425DA7EEA00261A95 /* slow-hash.c in Sources */,
 				B4EA75D1211307F60001F42C /* XMRPoolSession.swift in Sources */,
+				D295739B25DA7EEA00261A95 /* keccak.c in Sources */,
 				B4D3C7E921390E3D002F4E82 /* XMRTimer.swift in Sources */,
 				B4EA75CB211300440001F42C /* XMRWorker.swift in Sources */,
-				B45DACE32115245B004988D9 /* hash-extra-skein.c in Sources */,
 				B4EA75C9211300320001F42C /* XMRTask.swift in Sources */,
-				B45DACDD2115245B004988D9 /* hash-extra-groestl.c in Sources */,
+				D295739C25DA7EEA00261A95 /* hash-extra-groestl.c in Sources */,
 				B4EA75C7211300270001F42C /* XMRMiner.swift in Sources */,
+				D295739F25DA7EEA00261A95 /* hash-extra-jh.c in Sources */,
 				D24DA56625D124FE00A82F08 /* XMRBackendCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

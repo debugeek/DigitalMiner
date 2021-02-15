@@ -16,10 +16,15 @@ class XMRBackendCoordinator {
 
     private(set) var blob: Data?
     private(set) var target: UInt64 = 0
+    private(set) var height: UInt64 = 0
+    private(set) var version: UInt64 = 0
 
-    func update(blob: Data, target: UInt64) {
-        self.blob = blob
-        self.target = target
+    func update(job: XMRJob) {
+        self.blob = job.blob
+        self.target = job.target
+        self.height = job.height
+        self.version = job.version
+        
         nonce.store(UInt32.max - arc4random(), ordering: .relaxed)
     }
 

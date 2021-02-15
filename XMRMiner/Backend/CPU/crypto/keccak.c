@@ -7,7 +7,7 @@
 #include "hash-ops.h"
 #include "keccak.h"
 
-const size_t keccakf_rndc[24] = 
+const uint64_t keccakf_rndc[24] = 
 {
     0x0000000000000001, 0x0000000000008082, 0x800000000000808a,
     0x8000000080008000, 0x000000000000808b, 0x0000000080000001,
@@ -33,10 +33,10 @@ const int keccakf_piln[24] =
 
 // update the state with given number of rounds
 
-void keccakf(size_t st[25], int rounds)
+void keccakf(uint64_t st[25], int rounds)
 {
     int i, j, round;
-    size_t t, bc[5];
+    uint64_t t, bc[5];
 
     for (round = 0; round < rounds; round++) {
 
@@ -73,7 +73,7 @@ void keccakf(size_t st[25], int rounds)
 }
 
 // compute a keccak hash (md) of given byte length from "in"
-typedef size_t state_t[25];
+typedef uint64_t state_t[25];
 
 void keccak(const uint8_t *in, size_t inlen, uint8_t *md, int mdlen)
 {
@@ -94,7 +94,7 @@ void keccak(const uint8_t *in, size_t inlen, uint8_t *md, int mdlen)
 
     for ( ; inlen >= rsiz; inlen -= rsiz, in += rsiz) {
         for (i = 0; i < rsizw; i++)
-            st[i] ^= ((size_t *) in)[i];
+            st[i] ^= ((uint64_t *) in)[i];
         keccakf(st, KECCAK_ROUNDS);
     }
     
@@ -111,7 +111,7 @@ void keccak(const uint8_t *in, size_t inlen, uint8_t *md, int mdlen)
     temp[rsiz - 1] |= 0x80;
 
     for (i = 0; i < rsizw; i++)
-        st[i] ^= ((size_t *) temp)[i];
+        st[i] ^= ((uint64_t *) temp)[i];
 
     keccakf(st, KECCAK_ROUNDS);
 

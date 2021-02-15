@@ -42,7 +42,7 @@
 #pragma pack(push, 1)
 union hash_state {
   uint8_t b[200];
-  size_t w[25];
+  uint64_t w[25];
 };
 #pragma pack(pop)
 static_assert(sizeof(union hash_state) == 200, "Invalid structure size");
@@ -55,10 +55,10 @@ enum {
 };
 
 void *cn_slow_hash_alloc(void);
-void cn_slow_hash(const void *data, size_t length, uint8_t *hash, void *ctx);
+void cn_slow_hash(const void *data, size_t length, char *hash, void *ctx, uint64_t version, uint64_t height);
 
-void hash_extra_blake(const void *data, size_t length, uint8_t *hash);
-void hash_extra_groestl(const void *data, size_t length, uint8_t *hash);
-void hash_extra_jh(const void *data, size_t length, uint8_t *hash);
-void hash_extra_skein(const void *data, size_t length, uint8_t *hash);
+void hash_extra_blake(const void *data, size_t length, char *hash);
+void hash_extra_groestl(const void *data, size_t length, char *hash);
+void hash_extra_jh(const void *data, size_t length, char *hash);
+void hash_extra_skein(const void *data, size_t length, char *hash);
 

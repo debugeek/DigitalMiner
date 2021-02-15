@@ -19,7 +19,7 @@
 #include <string.h>
 
 /*typedef unsigned long long uint64;*/
-typedef size_t uint64;
+typedef uint64_t uint64;
 
 /*define data alignment for different C compilers*/
 #if defined(__GNUC__)

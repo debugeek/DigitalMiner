@@ -97,7 +97,7 @@ extension XMRWorker: XMRPoolSessionDelegate {
 
         job = newJob
 
-        XMRBackendCoordinator.shared.update(blob: newJob.blob, target: newJob.target)
+        XMRBackendCoordinator.shared.update(job: newJob)
 
         for backend in backends {
             backend.job = job

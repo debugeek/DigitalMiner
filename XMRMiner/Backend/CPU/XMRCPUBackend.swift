@@ -9,7 +9,7 @@
 import Foundation
 
 protocol XMRCPUThreadDelegate {
-    func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32)
+    func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32, height: inout UInt64, version: inout UInt64)
     func thread(CPUThread: XMRCPUThread, didFoundHash hash: String, forNonce nonce: String)
     func thread(CPUThread: XMRCPUThread, didUpdateHashrate hashrate: Double)
 }
@@ -22,7 +22,7 @@ class XMRCPUThread: Thread {
     private var hashRate: Double = 0
 
     override func main() {
-        var bytes = [UInt8](repeating: 0, count: 32)
+        var bytes = [Int8](repeating: 0, count: 32)
         var lluints = [UInt64](repeating: 0, count: 4)
 
         var starttime = timeval()
@@ -32,7 +32,10 @@ class XMRCPUThread: Thread {
             var blob: Data?
             var nonce: UInt32 = 0
             var target: UInt64 = 0
-            delegate?.thread(CPUThread: self, acquiresBlob: &blob, target: &target, nonce: &nonce)
+            var height: UInt64 = 0
+            var version: UInt64 = 0
+
+            delegate?.thread(CPUThread: self, acquiresBlob: &blob, target: &target, nonce: &nonce, height: &height, version: &version)
 
             if var blob = blob {
                 blob.withUnsafeMutableBytes { [length = UInt32(blob.count)] (rawBufferPtr: UnsafeMutableRawBufferPointer) in
@@ -44,7 +47,7 @@ class XMRCPUThread: Thread {
 
                     // hardcode nonce offset = 39
                     memmove(ptr + 39, &nonce, 4)
-                    xmr_hash(ptr, length, &bytes)
+                    xmr_hash(ptr, length, &bytes, height, version)
                     memmove(&lluints, &bytes, 32)
 
                     gettimeofday(&endtime, nil)
@@ -87,7 +90,7 @@ class XMRCPUBackend: XMRBackend, XMRCPUThreadDelegate {
         }
     }
 
-    func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32) {
+    func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32, height: inout UInt64, version: inout UInt64) {
         blob = XMRBackendCoordinator.shared.blob
         target = XMRBackendCoordinator.shared.target
         nonce = XMRBackendCoordinator.shared.nextNonce()

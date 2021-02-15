@@ -36,7 +36,7 @@
 
 typedef crypto_uint8 uint8_t; 
 typedef crypto_uint32 uint32_t; 
-typedef crypto_uint64 size_t;
+typedef crypto_uint64 uint64_t;
 */
 #include <stdint.h>
 

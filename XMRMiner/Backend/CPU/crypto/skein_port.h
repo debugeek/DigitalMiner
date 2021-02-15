@@ -86,7 +86,7 @@
 
 typedef unsigned int    uint_t;             /* native unsigned integer */
 typedef uint8_t         u08b_t;             /*  8-bit unsigned integer */
-typedef size_t        u64b_t;             /* 64-bit unsigned integer */
+typedef uint64_t        u64b_t;             /* 64-bit unsigned integer */
 
 #ifndef RotL_64
 #define RotL_64(x,N)    (((x) << (N)) | ((x) >> (64-(N))))

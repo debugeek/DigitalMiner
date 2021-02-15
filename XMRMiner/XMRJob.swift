@@ -16,4 +16,8 @@ struct XMRJob {
 
     let blob: Data
 
+    let height: UInt64
+
+    let version: UInt64
+    
 }

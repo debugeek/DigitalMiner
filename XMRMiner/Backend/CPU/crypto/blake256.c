@@ -153,7 +153,7 @@ void blake224_init(state *S) {
 }
 
 // datalen = number of bits
-void blake256_update(state *S, const uint8_t *data, size_t datalen) {
+void blake256_update(state *S, const uint8_t *data, uint64_t datalen) {
     int left = S->buflen >> 3;
     int fill = 64 - left;
 
@@ -163,7 +163,7 @@ void blake256_update(state *S, const uint8_t *data, size_t datalen) {
         if (S->t[0] == 0) S->t[1]++;
         blake256_compress(S, S->buf);
         data += fill;
-        datalen -= (size_t)(fill << 3);
+        datalen -= (uint64_t)(fill << 3);
         left = 0;
     }
 
@@ -177,14 +177,14 @@ void blake256_update(state *S, const uint8_t *data, size_t datalen) {
 
     if (datalen > 0) {
         memcpy((void *) (S->buf + left), (void *) data, datalen >> 3);
-        S->buflen = (int)(((size_t)left << 3) + datalen);
+        S->buflen = (int)(((uint64_t)left << 3) + datalen);
     } else {
         S->buflen = 0;
     }
 }
 
 // datalen = number of bits
-void blake224_update(state *S, const uint8_t *data, size_t datalen) {
+void blake224_update(state *S, const uint8_t *data, uint64_t datalen) {
     blake256_update(S, data, datalen);
 }
 
@@ -235,7 +235,7 @@ void blake224_final(state *S, uint8_t *digest) {
 }
 
 // inlen = number of bytes
-void blake256_hash(uint8_t *out, const uint8_t *in, size_t inlen) {
+void blake256_hash(uint8_t *out, const uint8_t *in, uint64_t inlen) {
     state S;
     blake256_init(&S);
     blake256_update(&S, in, inlen * 8);
@@ -243,7 +243,7 @@ void blake256_hash(uint8_t *out, const uint8_t *in, size_t inlen) {
 }
 
 // inlen = number of bytes
-void blake224_hash(uint8_t *out, const uint8_t *in, size_t inlen) {
+void blake224_hash(uint8_t *out, const uint8_t *in, uint64_t inlen) {
     state S;
     blake224_init(&S);
     blake224_update(&S, in, inlen * 8);
@@ -251,11 +251,11 @@ void blake224_hash(uint8_t *out, const uint8_t *in, size_t inlen) {
 }
 
 // keylen = number of bytes
-void hmac_blake256_init(hmac_state *S, const uint8_t *_key, size_t keylen) {
+void hmac_blake256_init(hmac_state *S, const uint8_t *_key, uint64_t keylen) {
     const uint8_t *key = _key;
     uint8_t keyhash[32];
     uint8_t pad[64];
-    size_t i;
+    uint64_t i;
 
     if (keylen > 64) {
         blake256_hash(keyhash, key, keylen);
@@ -281,11 +281,11 @@ void hmac_blake256_init(hmac_state *S, const uint8_t *_key, size_t keylen) {
 }
 
 // keylen = number of bytes
-void hmac_blake224_init(hmac_state *S, const uint8_t *_key, size_t keylen) {
+void hmac_blake224_init(hmac_state *S, const uint8_t *_key, uint64_t keylen) {
     const uint8_t *key = _key;
     uint8_t keyhash[32];
     uint8_t pad[64];
-    size_t i;
+    uint64_t i;
 
     if (keylen > 64) {
         blake256_hash(keyhash, key, keylen);
@@ -311,13 +311,13 @@ void hmac_blake224_init(hmac_state *S, const uint8_t *_key, size_t keylen) {
 }
 
 // datalen = number of bits
-void hmac_blake256_update(hmac_state *S, const uint8_t *data, size_t datalen) {
+void hmac_blake256_update(hmac_state *S, const uint8_t *data, uint64_t datalen) {
   // update the inner state
   blake256_update(&S->inner, data, datalen);
 }
 
 // datalen = number of bits
-void hmac_blake224_update(hmac_state *S, const uint8_t *data, size_t datalen) {
+void hmac_blake224_update(hmac_state *S, const uint8_t *data, uint64_t datalen) {
   // update the inner state
   blake224_update(&S->inner, data, datalen);
 }
@@ -339,7 +339,7 @@ void hmac_blake224_final(hmac_state *S, uint8_t *digest) {
 }
 
 // keylen = number of bytes; inlen = number of bytes
-void hmac_blake256_hash(uint8_t *out, const uint8_t *key, size_t keylen, const uint8_t *in, size_t inlen) {
+void hmac_blake256_hash(uint8_t *out, const uint8_t *key, uint64_t keylen, const uint8_t *in, uint64_t inlen) {
     hmac_state S;
     hmac_blake256_init(&S, key, keylen);
     hmac_blake256_update(&S, in, inlen * 8);
@@ -347,7 +347,7 @@ void hmac_blake256_hash(uint8_t *out, const uint8_t *key, size_t keylen, const u
 }
 
 // keylen = number of bytes; inlen = number of bytes
-void hmac_blake224_hash(uint8_t *out, const uint8_t *key, size_t keylen, const uint8_t *in, size_t inlen) {
+void hmac_blake224_hash(uint8_t *out, const uint8_t *key, uint64_t keylen, const uint8_t *in, uint64_t inlen) {
     hmac_state S;
     hmac_blake224_init(&S, key, keylen);
     hmac_blake224_update(&S, in, inlen * 8);

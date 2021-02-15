@@ -206,7 +206,14 @@ public class XMRPoolSession {
             return
         }
 
-        let job = XMRJob(jobId: jobId, target: target, blob: blob)
+        var height: UInt64 = 0
+        if let heightValue = params["height"] as? UInt64 {
+            height = heightValue
+        }
+
+        let version = VarIntCoder().decode(UInt64: blob.bytes).0
+
+        let job = XMRJob(jobId: jobId, target: target, blob: blob, height: height, version: version)
 
         delegate?.session(session: self, didReceivedJob: job)
     }
