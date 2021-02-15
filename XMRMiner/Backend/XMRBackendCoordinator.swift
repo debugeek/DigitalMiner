@@ -24,7 +24,6 @@ class XMRBackendCoordinator {
         self.target = job.target
         self.height = job.height
         self.version = job.version
-        
         nonce.store(UInt32.max - arc4random(), ordering: .relaxed)
     }
 

@@ -47,7 +47,7 @@ class XMRCPUThread: Thread {
 
                     // hardcode nonce offset = 39
                     memmove(ptr + 39, &nonce, 4)
-                    xmr_hash(ptr, length, &bytes, height, version)
+                    xmr_hash(ptr, length, &bytes, version, height)
                     memmove(&lluints, &bytes, 32)
 
                     gettimeofday(&endtime, nil)
@@ -91,9 +91,12 @@ class XMRCPUBackend: XMRBackend, XMRCPUThreadDelegate {
     }
 
     func thread(CPUThread: XMRCPUThread, acquiresBlob blob: inout Data?, target: inout UInt64, nonce: inout UInt32, height: inout UInt64, version: inout UInt64) {
-        blob = XMRBackendCoordinator.shared.blob
-        target = XMRBackendCoordinator.shared.target
-        nonce = XMRBackendCoordinator.shared.nextNonce()
+        let coordinator = XMRBackendCoordinator.shared
+        blob = coordinator.blob
+        target = coordinator.target
+        height = coordinator.height
+        version = coordinator.version
+        nonce = coordinator.nextNonce()
     }
 
     func thread(CPUThread: XMRCPUThread, didFoundHash hash: String, forNonce nonce: String) {

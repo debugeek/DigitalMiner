@@ -81,7 +81,7 @@ extension XMRWorker: XMRPoolSessionDelegate {
         var size = MemoryLayout<Int>.size
         sysctlbyname("hw.ncpu", &ncpu, &size, nil, 0)
 
-        for _ in 0...ncpu - 1 {
+        for _ in 0..<ncpu {
             let CPUBackend = XMRCPUBackend()
             CPUBackend.delegate = self
             backends.append(CPUBackend)
