@@ -18,11 +18,15 @@ class ViewController: UIViewController {
     var timer: Timer?
 
     @IBOutlet weak var hashrateLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+
+    private var successed: Int32 = 0
+    private var failed: Int32 = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        worker = XMRWorker(identifier: "default", host: "xmr-asia1.nanopool.org", port: 14444, username: other, password: "x")
+        worker = XMRWorker(identifier: "default", host: "pool.supportxmr.com", port: 3333, username: other, password: "x")
         worker?.delegate = self
         worker?.start()
 
@@ -38,6 +42,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: XMRWorkerDelegate {
+
     func worker(worker: XMRWorker, didLoginedWithWorkerId workerId: String) {
         debugPrint("Worker logined \(workerId)")
     }
@@ -48,10 +53,13 @@ extension ViewController: XMRWorkerDelegate {
 
     func worker(worker: XMRWorker, didSubmittedNoviceWithError error: Error?) {
         if let error = error {
+            failed += 1
             debugPrint("Submitting rejected \(error)")
         } else {
+            successed += 1
             debugPrint("Submitting accepted")
         }
+        countLabel.text = "\(successed) / \(failed)"
     }
 
     func worker(worker: XMRWorker, didOccurredError error: Error?) {

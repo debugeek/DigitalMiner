@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,25 +17,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9M-8T-Rlm">
-                                <rect key="frame" x="168.5" y="309.5" width="38" height="48"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="40"/>
+                                <rect key="frame" x="170" y="265.5" width="35.5" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 \ 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoF-Wv-WN3">
+                                <rect key="frame" x="147.5" y="353.5" width="80" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNa-wi-soH">
+                                <rect key="frame" x="0.0" y="265.5" width="2" height="136"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="g0a-Qq-tmq"/>
+                                </constraints>
+                            </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="S9M-8T-Rlm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eI4-8l-HzT"/>
+                            <constraint firstItem="UoF-Wv-WN3" firstAttribute="bottom" secondItem="GNa-wi-soH" secondAttribute="bottom" id="5zU-sB-7gj"/>
+                            <constraint firstItem="GNa-wi-soH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="74N-9l-mLC"/>
+                            <constraint firstItem="S9M-8T-Rlm" firstAttribute="top" secondItem="GNa-wi-soH" secondAttribute="top" id="e64-ab-3qQ"/>
                             <constraint firstItem="S9M-8T-Rlm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fHC-Nh-ZwD"/>
+                            <constraint firstItem="GNa-wi-soH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iyx-4H-XMP"/>
+                            <constraint firstItem="UoF-Wv-WN3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pas-2b-Sze"/>
+                            <constraint firstItem="UoF-Wv-WN3" firstAttribute="top" secondItem="S9M-8T-Rlm" secondAttribute="bottom" constant="40" id="pmC-p6-kt2"/>
+                            <constraint firstItem="GNa-wi-soH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xBh-P2-S3y"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="countLabel" destination="UoF-Wv-WN3" id="1hK-vP-wIG"/>
                         <outlet property="hashrateLabel" destination="S9M-8T-Rlm" id="UK8-Hj-Mqy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-167.19999999999999" y="30.134932533733135"/>
         </scene>
     </scenes>
 </document>

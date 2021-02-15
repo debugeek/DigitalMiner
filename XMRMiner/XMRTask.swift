@@ -15,4 +15,5 @@ public struct XMRTask {
     public init() {
 
     }
+    
 }
