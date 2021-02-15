@@ -1,6 +1,6 @@
 //
 //  XMRBackendCoordinator.swift
-//  XMRMiner
+//  DigitalMiner
 //
 //  Created by Xiao Jin on 2021/2/8.
 //  Copyright © 2021 debugeek. All rights reserved.

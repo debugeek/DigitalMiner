@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import XMRMiner
-
-let username = "47YAFS37DVKZxZBRdFn1gxNDAhnaRbe9t5ka97TM6ko14DJDEasuXim4ZsHDRKccWsC2QEFPWw4VAYuhjPyL6PBFGvALW1g"
-let other = "46p7ijbfDXFRCqX5Pu5FYDTPk58A5n3cyfF4SgofZoxn8cynBiyNYgiNT4JnrqQU3P6xEfmHEJGBUHvyNk7du42iVDeVxxj"
+import DigitalMiner
 
 class ViewController: UIViewController {
 
@@ -26,7 +23,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        worker = XMRWorker(identifier: "default", host: "xmr-asia1.nanopool.org", port: 14444, username: other, password: "x")
+        worker = XMRWorker(identifier: "default",
+                           host: "xmr-asia1.nanopool.org",
+                           port: 14444,
+                           username: "46p7ijbfDXFRCqX5Pu5FYDTPk58A5n3cyfF4SgofZoxn8cynBiyNYgiNT4JnrqQU3P6xEfmHEJGBUHvyNk7du42iVDeVxxj",
+                           password: "x")
         worker?.delegate = self
         worker?.start()
 

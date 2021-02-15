@@ -1,6 +1,6 @@
 //
 //  XMRCPUProcessor.h
-//  XMRMiner
+//  DigitalMiner
 //
 //  Created by Jinxiao on 2018/8/4.
 //  Copyright © 2018 debugeek. All rights reserved.

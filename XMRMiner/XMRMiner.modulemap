@@ -1,7 +1,0 @@
-
-module XMRMiner {
-    umbrella header "XMRMiner-unbrella.h"
-
-    export *
-    module * { export * }
-}
