@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D29A391725DC0C610011C99E /* XMRUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DDE25DAD09E00468846 /* XMRUtils.swift */; };
+		D29A391825DC0C610011C99E /* XMRTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DFF25DAD09E00468846 /* XMRTimer.swift */; };
+		D29A391925DC0C610011C99E /* XMRBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DFA25DAD09E00468846 /* XMRBackend.swift */; };
+		D29A391A25DC0C610011C99E /* XMRBackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DFB25DAD09E00468846 /* XMRBackendCoordinator.swift */; };
+		D29A391B25DC0C610011C99E /* XMRJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DFD25DAD09E00468846 /* XMRJob.swift */; };
+		D29A391C25DC0C610011C99E /* XMRPoolSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DFC25DAD09E00468846 /* XMRPoolSession.swift */; };
+		D29A391D25DC0C610011C99E /* hash-extra-blake.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DE725DAD09E00468846 /* hash-extra-blake.c */; };
+		D29A391E25DC0C610011C99E /* keccak.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DE325DAD09E00468846 /* keccak.c */; };
+		D29A391F25DC0C610011C99E /* skein.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DF325DAD09E00468846 /* skein.c */; };
+		D29A392025DC0C610011C99E /* XMRTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90E0225DAD09E00468846 /* XMRTask.swift */; };
+		D29A392125DC0C610011C99E /* blake256.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DE825DAD09E00468846 /* blake256.c */; };
+		D29A392225DC0C610011C99E /* XMRCPUBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DF725DAD09E00468846 /* XMRCPUBackend.swift */; };
+		D29A392325DC0C610011C99E /* XMRStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DDF25DAD09E00468846 /* XMRStream.swift */; };
+		D29A392425DC0C610011C99E /* XMRWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DFE25DAD09E00468846 /* XMRWorker.swift */; };
+		D29A392525DC0C610011C99E /* groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DF025DAD09E00468846 /* groestl.c */; };
+		D29A392625DC0C610011C99E /* hash-extra-jh.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DED25DAD09E00468846 /* hash-extra-jh.c */; };
+		D29A392725DC0C610011C99E /* hash-extra-skein.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DF225DAD09E00468846 /* hash-extra-skein.c */; };
+		D29A392825DC0C610011C99E /* slow-hash.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DF625DAD09E00468846 /* slow-hash.c */; };
+		D29A392925DC0C610011C99E /* XMRCPUProcessor.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DF825DAD09E00468846 /* XMRCPUProcessor.c */; };
+		D29A392A25DC0C610011C99E /* hash-extra-groestl.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DE525DAD09E00468846 /* hash-extra-groestl.c */; };
+		D29A392B25DC0C610011C99E /* jh.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DEE25DAD09E00468846 /* jh.c */; };
+		D29A393225DC0C6E0011C99E /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = D29A393125DC0C6E0011C99E /* Atomics */; };
+		D29A393725DC0C890011C99E /* DigitalMiner-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = D29A393625DC0C890011C99E /* DigitalMiner-Bridging-Header.h */; };
+		D29A393F25DC0CB30011C99E /* DigitalMiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A393E25DC0CB30011C99E /* DigitalMiner.swift */; };
+		D29A394D25DC0CCF0011C99E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A394C25DC0CCF0011C99E /* AppDelegate.swift */; };
+		D29A394F25DC0CCF0011C99E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A394E25DC0CCF0011C99E /* ViewController.swift */; };
+		D29A395125DC0CCF0011C99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29A395025DC0CCF0011C99E /* Assets.xcassets */; };
+		D29A395425DC0CCF0011C99E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D29A395225DC0CCF0011C99E /* Main.storyboard */; };
+		D29A396025DC0CDD0011C99E /* libDigitalMiner macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D29A390825DC0C270011C99E /* libDigitalMiner macOS.a */; };
 		D2E90DC625DAD04800468846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DC525DAD04800468846 /* AppDelegate.swift */; };
 		D2E90DCA25DAD04800468846 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E90DC925DAD04800468846 /* ViewController.swift */; };
 		D2E90DCD25DAD04800468846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E90DCB25DAD04800468846 /* Main.storyboard */; };
@@ -39,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D29A395E25DC0CD80011C99E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4EA757E2112D88F0001F42C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D29A390725DC0C270011C99E;
+			remoteInfo = "DigitalMiner macOS";
+		};
 		D2E90E1725DAD0DA00468846 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B4EA757E2112D88F0001F42C /* Project object */;
@@ -61,6 +97,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D29A390825DC0C270011C99E /* libDigitalMiner macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libDigitalMiner macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29A393625DC0C890011C99E /* DigitalMiner-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DigitalMiner-Bridging-Header.h"; sourceTree = "<group>"; };
+		D29A393E25DC0CB30011C99E /* DigitalMiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalMiner.swift; sourceTree = "<group>"; };
+		D29A394A25DC0CCF0011C99E /* DigitalMiner App macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DigitalMiner App macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29A394C25DC0CCF0011C99E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D29A394E25DC0CCF0011C99E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D29A395025DC0CCF0011C99E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D29A395325DC0CCF0011C99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D29A395525DC0CCF0011C99E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D29A395625DC0CCF0011C99E /* DigitalMiner_App_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigitalMiner_App_macOS.entitlements; sourceTree = "<group>"; };
 		D2E90DC325DAD04800468846 /* DigitalMiner App iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DigitalMiner App iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E90DC525DAD04800468846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E90DC925DAD04800468846 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +152,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D29A390625DC0C270011C99E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A393225DC0C6E0011C99E /* Atomics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D29A394725DC0CCF0011C99E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A396025DC0CDD0011C99E /* libDigitalMiner macOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2E90DC025DAD04800468846 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,6 +193,8 @@
 				D2E90DDC25DAD08000468846 /* DigitalMiner */,
 				D2E90E0A25DAD0B800468846 /* DigitalMiner iOS */,
 				D2E90DC425DAD04800468846 /* DigitalMiner App iOS */,
+				D29A390925DC0C270011C99E /* DigitalMiner macOS */,
+				D29A394B25DC0CCF0011C99E /* DigitalMiner App macOS */,
 				B4EA75872112D88F0001F42C /* Products */,
 				D2E90E1425DAD0D600468846 /* Frameworks */,
 			);
@@ -141,8 +205,32 @@
 			children = (
 				D2E90DC325DAD04800468846 /* DigitalMiner App iOS.app */,
 				D2E90E0925DAD0B800468846 /* libDigitalMiner iOS.a */,
+				D29A390825DC0C270011C99E /* libDigitalMiner macOS.a */,
+				D29A394A25DC0CCF0011C99E /* DigitalMiner App macOS.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D29A390925DC0C270011C99E /* DigitalMiner macOS */ = {
+			isa = PBXGroup;
+			children = (
+				D29A393625DC0C890011C99E /* DigitalMiner-Bridging-Header.h */,
+				D29A393E25DC0CB30011C99E /* DigitalMiner.swift */,
+			);
+			path = "DigitalMiner macOS";
+			sourceTree = "<group>";
+		};
+		D29A394B25DC0CCF0011C99E /* DigitalMiner App macOS */ = {
+			isa = PBXGroup;
+			children = (
+				D29A394C25DC0CCF0011C99E /* AppDelegate.swift */,
+				D29A394E25DC0CCF0011C99E /* ViewController.swift */,
+				D29A395025DC0CCF0011C99E /* Assets.xcassets */,
+				D29A395225DC0CCF0011C99E /* Main.storyboard */,
+				D29A395525DC0CCF0011C99E /* Info.plist */,
+				D29A395625DC0CCF0011C99E /* DigitalMiner_App_macOS.entitlements */,
+			);
+			path = "DigitalMiner App macOS";
 			sourceTree = "<group>";
 		};
 		D2E90DC425DAD04800468846 /* DigitalMiner App iOS */ = {
@@ -247,7 +335,57 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D29A390425DC0C270011C99E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A393725DC0C890011C99E /* DigitalMiner-Bridging-Header.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		D29A390725DC0C270011C99E /* DigitalMiner macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D29A391025DC0C270011C99E /* Build configuration list for PBXNativeTarget "DigitalMiner macOS" */;
+			buildPhases = (
+				D29A390425DC0C270011C99E /* Headers */,
+				D29A390525DC0C270011C99E /* Sources */,
+				D29A390625DC0C270011C99E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D29A393025DC0C690011C99E /* PBXTargetDependency */,
+			);
+			name = "DigitalMiner macOS";
+			packageProductDependencies = (
+				D29A393125DC0C6E0011C99E /* Atomics */,
+			);
+			productName = "DigitalMiner macOS";
+			productReference = D29A390825DC0C270011C99E /* libDigitalMiner macOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D29A394925DC0CCF0011C99E /* DigitalMiner App macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D29A395725DC0CCF0011C99E /* Build configuration list for PBXNativeTarget "DigitalMiner App macOS" */;
+			buildPhases = (
+				D29A394625DC0CCF0011C99E /* Sources */,
+				D29A394725DC0CCF0011C99E /* Frameworks */,
+				D29A394825DC0CCF0011C99E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D29A395F25DC0CD80011C99E /* PBXTargetDependency */,
+			);
+			name = "DigitalMiner App macOS";
+			productName = "DigitalMiner App macOS";
+			productReference = D29A394A25DC0CCF0011C99E /* DigitalMiner App macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D2E90DC225DAD04800468846 /* DigitalMiner App iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2E90DD625DAD04900468846 /* Build configuration list for PBXNativeTarget "DigitalMiner App iOS" */;
@@ -297,6 +435,12 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = debugeek;
 				TargetAttributes = {
+					D29A390725DC0C270011C99E = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					D29A394925DC0CCF0011C99E = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					D2E90DC225DAD04800468846 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -322,12 +466,23 @@
 			projectRoot = "";
 			targets = (
 				D2E90DC225DAD04800468846 /* DigitalMiner App iOS */,
+				D29A394925DC0CCF0011C99E /* DigitalMiner App macOS */,
 				D2E90E0825DAD0B800468846 /* DigitalMiner iOS */,
+				D29A390725DC0C270011C99E /* DigitalMiner macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D29A394825DC0CCF0011C99E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A395125DC0CCF0011C99E /* Assets.xcassets in Resources */,
+				D29A395425DC0CCF0011C99E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2E90DC125DAD04800468846 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -341,6 +496,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D29A390525DC0C270011C99E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A392025DC0C610011C99E /* XMRTask.swift in Sources */,
+				D29A392225DC0C610011C99E /* XMRCPUBackend.swift in Sources */,
+				D29A392925DC0C610011C99E /* XMRCPUProcessor.c in Sources */,
+				D29A392B25DC0C610011C99E /* jh.c in Sources */,
+				D29A392825DC0C610011C99E /* slow-hash.c in Sources */,
+				D29A391D25DC0C610011C99E /* hash-extra-blake.c in Sources */,
+				D29A392525DC0C610011C99E /* groestl.c in Sources */,
+				D29A392625DC0C610011C99E /* hash-extra-jh.c in Sources */,
+				D29A391C25DC0C610011C99E /* XMRPoolSession.swift in Sources */,
+				D29A391B25DC0C610011C99E /* XMRJob.swift in Sources */,
+				D29A391E25DC0C610011C99E /* keccak.c in Sources */,
+				D29A391725DC0C610011C99E /* XMRUtils.swift in Sources */,
+				D29A393F25DC0CB30011C99E /* DigitalMiner.swift in Sources */,
+				D29A391A25DC0C610011C99E /* XMRBackendCoordinator.swift in Sources */,
+				D29A391F25DC0C610011C99E /* skein.c in Sources */,
+				D29A392425DC0C610011C99E /* XMRWorker.swift in Sources */,
+				D29A391825DC0C610011C99E /* XMRTimer.swift in Sources */,
+				D29A392725DC0C610011C99E /* hash-extra-skein.c in Sources */,
+				D29A392125DC0C610011C99E /* blake256.c in Sources */,
+				D29A391925DC0C610011C99E /* XMRBackend.swift in Sources */,
+				D29A392325DC0C610011C99E /* XMRStream.swift in Sources */,
+				D29A392A25DC0C610011C99E /* hash-extra-groestl.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D29A394625DC0CCF0011C99E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A394F25DC0CCF0011C99E /* ViewController.swift in Sources */,
+				D29A394D25DC0CCF0011C99E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2E90DBF25DAD04800468846 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,6 +575,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D29A393025DC0C690011C99E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D29A392F25DC0C690011C99E /* Atomics */;
+		};
+		D29A395F25DC0CD80011C99E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D29A390725DC0C270011C99E /* DigitalMiner macOS */;
+			targetProxy = D29A395E25DC0CD80011C99E /* PBXContainerItemProxy */;
+		};
 		D2E90E1325DAD0D100468846 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = D2E90E1225DAD0D100468846 /* Atomics */;
@@ -394,6 +596,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D29A395225DC0CCF0011C99E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D29A395325DC0CCF0011C99E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		D2E90DCB25DAD04800468846 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -531,6 +741,80 @@
 			};
 			name = Release;
 		};
+		D29A390E25DC0C270011C99E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_MODULE_NAME = DigitalMiner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/DigitalMiner macOS/DigitalMiner-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		D29A390F25DC0C270011C99E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_MODULE_NAME = DigitalMiner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/DigitalMiner macOS/DigitalMiner-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		D29A395825DC0CCF0011C99E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = "DigitalMiner App macOS/DigitalMiner_App_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "DigitalMiner App macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.debugeek.DigitalMiner-App-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D29A395925DC0CCF0011C99E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = "DigitalMiner App macOS/DigitalMiner_App_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "DigitalMiner App macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.debugeek.DigitalMiner-App-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		D2E90DD425DAD04900468846 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -609,6 +893,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		D29A391025DC0C270011C99E /* Build configuration list for PBXNativeTarget "DigitalMiner macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D29A390E25DC0C270011C99E /* Debug */,
+				D29A390F25DC0C270011C99E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D29A395725DC0CCF0011C99E /* Build configuration list for PBXNativeTarget "DigitalMiner App macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D29A395825DC0CCF0011C99E /* Debug */,
+				D29A395925DC0CCF0011C99E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D2E90DD625DAD04900468846 /* Build configuration list for PBXNativeTarget "DigitalMiner App iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -641,6 +943,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D29A392F25DC0C690011C99E /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D24DA56025D11DDD00A82F08 /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
+		};
+		D29A393125DC0C6E0011C99E /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D24DA56025D11DDD00A82F08 /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
+		};
 		D2E90E1225DAD0D100468846 /* Atomics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D24DA56025D11DDD00A82F08 /* XCRemoteSwiftPackageReference "swift-atomics" */;
